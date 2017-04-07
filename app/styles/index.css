@@ -1,4 +1,4 @@
-.toolbar {
+.navbar {
 	width: 50px !important;
 	max-width: 50px !important;
 	min-width: 50px !important;
@@ -6,18 +6,39 @@
 
 }
 
-.toolbar-item {
+.navbar-item {
 	padding: 0px !important;
 	margin: 0px;
 }
 
-.toolbar-button {
+.navbar-button {
 	padding: 5px 13px 5px 13px !important;
 	margin: 0px !important;
 	min-height: 0px !important;
 	min-width: 0px !important;
 }
 
-.toolbar-svg {
+.navbar-svg {
 	color: #dddddd;
+}
+
+#custom-toolbar-draggable {
+	-webkit-app-region: drag !important;
+	min-height: 36px !important;
+	max-height: 36px !important;
+	height: 36px !important;
+}
+
+.toolbar-svg {
+	min-height: 12px !important;
+	max-height: 12px !important;
+	min-width: 12px !important;
+	max-width: 12px !important;
+}
+
+.toolbar-button{
+	margin: 0px !important;
+	padding: 0px 10px 0px 10px !important;
+	min-width: 12px !important;
+	-webkit-app-region: no-drag;
 }

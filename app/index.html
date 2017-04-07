@@ -9,7 +9,7 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<link rel="stylesheet" href="styles/index.css">
 	</head>
-	<body ng-app="myApp" layout="column">
+	<body ng-app="myApp" ng-cloak>
 		<div ng-include src="'views/home.html'" ng-controller="HomeCtrl" layout="column" class="container" style="min-height: 100%">
 		</div>
 	</body>
@@ -20,4 +20,6 @@
     <script type="text/javascript" src="../bower_components/angular-material/angular-material.min.js"></script>
     <script type="text/javascript" src="scripts/app.js"></script>
 	<script type="text/javascript" src="scripts/homeController.js"></script>
+	<script type="text/javascript" src="scripts/mainNavController.js"></script>
+	<script type="text/javascript" src="scripts/leftNavController.js"></script>
 </html>

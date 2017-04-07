@@ -1,3 +1,4 @@
+const remote = require('electron').remote;
 var angApp = angular.module('myApp', ['ngMaterial']);
 angApp.config(function($mdThemingProvider){
     $mdThemingProvider.theme('default')

@@ -1,28 +1,60 @@
-
-    <div flex layout="row">
-        <md-sidenav md-is-locked-open="true" class="md-whiteframe-z2 toolbar">
+<md-toolbar id="custom-toolbar-draggable" layout="row" layout-align="end center">
+    <md-button class="toolbar-button" ng-click="reduceW()">
+        <md-icon md-svg-src="assets/svg/negative-sign.svg" class="toolbar-svg"></md-icon>
+    </md-button>
+    <md-button class="toolbar-button" ng-click="maxW()">
+        <md-icon md-svg-src="assets/svg/add-song.svg" class="toolbar-svg"></md-icon>
+    </md-button>
+    <md-button class="toolbar-button" ng-click="closeW()">
+        <md-icon md-svg-src="assets/svg/cancel-music.svg" class="toolbar-svg"></md-icon>
+    </md-button>
+</md-toolbar>
+<div flex layout="row">
+    <md-sidenav md-is-locked-open="true" class="md-sidenav-left md-whiteframe-2dp navbar">
+    <div ng-controller="MainNavCtrl">
             <md-list>
-        <md-list-item class="toolbar-item">
-            <md-button class="toolbar-button">
-                <md-icon md-svg-src="assets/svg/filter-filled-tool-symbol.svg" class="toolbar-svg"></md-icon>
-            </md-button>
-        </md-list-item>
-        <md-list-item class="toolbar-item">
-            <md-button class="toolbar-button">
-                <md-icon md-svg-src="assets/svg/check.svg" class="toolbar-svg"></md-icon>
-            </md-button>
-        </md-list-item>
-        <md-list-item class="toolbar-item">
-            <md-button class="toolbar-button">
-                <md-icon md-svg-src="assets/svg/parameters.svg" class="toolbar-svg"></md-icon>
-            </md-button>
-        </md-list-item>
+                <md-list-item class="navbar-item">
+                    <md-button class="navbar-button">
+                        <md-icon md-svg-src="assets/svg/filter-filled-tool-symbol.svg" class="navbar-svg"></md-icon>
+                    </md-button>
+                </md-list-item>
+                <md-list-item class="navbar-item">
+                    <md-button class="navbar-button">
+                        <md-icon md-svg-src="assets/svg/check.svg" class="navbar-svg"></md-icon>
+                    </md-button>
+                </md-list-item>
+                <md-list-item class="navbar-item">
+                    <md-button class="navbar-button">
+                        <md-icon md-svg-src="assets/svg/parameters.svg" class="navbar-svg"></md-icon>
+                    </md-button>
+                </md-list-item>
 
-      </md-list>
+            </md-list>
+        </div>
+    </md-sidenav>
+
+    <md-content flex id="content"></md-content>
+
+    <md-sidenav class="md-sidenav-right md-whiteframe-2dp navbar">
+        <div ng-controller="LeftNavCtrl">
+            <md-list>
+                <md-list-item class="navbar-item">
+                    <md-button class="navbar-button">
+                        <md-icon md-svg-src="assets/svg/filter-filled-tool-symbol.svg" class="navbar-svg"></md-icon>
+                    </md-button>
+                </md-list-item>
+                <md-list-item class="navbar-item">
+                    <md-button class="navbar-button">
+                        <md-icon md-svg-src="assets/svg/check.svg" class="navbar-svg"></md-icon>
+                    </md-button>
+                </md-list-item>
+                <md-list-item class="navbar-item">
+                    <md-button class="navbar-button">
+                        <md-icon md-svg-src="assets/svg/parameters.svg" class="navbar-svg"></md-icon>
+                    </md-button>
+                </md-list-item>
+            </md-list>
         </md-sidenav>
-
-        <!-- Container #4 -->
-        <md-content flex id="content"></md-content>
-
     </div>
+</div>
 

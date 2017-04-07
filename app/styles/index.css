@@ -17,3 +17,7 @@
 	min-height: 0px !important;
 	min-width: 0px !important;
 }
+
+.toolbar-svg {
+	color: #dddddd;
+}

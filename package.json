@@ -1,0 +1,47 @@
+{
+  "name": "oko",
+  "productName": "Oko",
+  "version": "0.0.1",
+  "description": "",
+  "author": {
+    "name": "Théo Buri",
+    "email": "",
+    "url": ""
+  },
+  "main": "app/main.js",
+  "scripts": {
+    "test": "xo",
+    "start": "electron .",
+    "build": "electron-packager . --out=dist --asar --overwrite --all"
+  },
+  "files": [
+    "index.js",
+    "index.html",
+    "index.css"
+  ],
+  "keywords": [
+    "electron-app",
+    "electron"
+  ],
+  "dependencies": {
+    "bower": "^1.8.0",
+    "electron-debug": "^1.1.0"
+  },
+  "devDependencies": {
+    "devtron": "^1.4.0",
+    "electron": "^1.6.2",
+    "electron-packager": "^8.6.0",
+    "karma": "^1.6.0",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-jasmine": "^1.1.0",
+    "protractor": "^5.1.1",
+    "xo": "^0.18.1"
+  },
+  "xo": {
+    "esnext": true,
+    "envs": [
+      "node",
+      "browser"
+    ]
+  }
+}

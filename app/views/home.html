@@ -10,8 +10,9 @@
     </md-button>
 </md-toolbar>
 <div flex layout="row">
-    <md-sidenav md-is-locked-open="true" class="md-sidenav-left md-whiteframe-2dp navbar">
-    <div ng-controller="MainNavCtrl">
+    <div flex ng-controller="MainNavCtrl" layout="row">
+        <md-sidenav md-is-locked-open="true" class="md-sidenav-left md-whiteframe-2dp navbar">
+
             <md-list>
                 <md-list-item class="navbar-item">
                     <md-button class="navbar-button">
@@ -30,9 +31,9 @@
                 </md-list-item>
 
             </md-list>
-        </div>
-    </md-sidenav>
-
+        </md-sidenav>
+    </div>
+    
     <md-content flex id="content"></md-content>
 
     <md-sidenav class="md-sidenav-right md-whiteframe-2dp navbar">
@@ -54,7 +55,7 @@
                     </md-button>
                 </md-list-item>
             </md-list>
-        </md-sidenav>
-    </div>
-</div>
 
+        </div>
+    </md-sidenav>
+</div>

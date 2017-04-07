@@ -1,4 +1,4 @@
-angular.module('myApp', []).
+angApp.
 controller('HomeCtrl', function($scope){
     $scope.title = "Oko";
 });

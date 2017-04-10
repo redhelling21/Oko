@@ -15,6 +15,11 @@
 
             <md-list>
                 <md-list-item class="navbar-item">
+                    <md-button class="navbar-button" ng-click="selectFolderToExplore()">
+                        <md-icon md-svg-src="assets/svg/open-folder.svg" class="navbar-svg"></md-icon>
+                    </md-button>
+                </md-list-item>
+                <md-list-item class="navbar-item">
                     <md-button class="navbar-button">
                         <md-icon md-svg-src="assets/svg/filter-filled-tool-symbol.svg" class="navbar-svg"></md-icon>
                     </md-button>
@@ -34,7 +39,10 @@
         </md-sidenav>
     </div>
 
-    <md-content flex id="content"></md-content>
+    <md-content flex id="content">
+        <div ng-include src="'views/gallery.html'" ng-controller="GalleryCtrl" layout="column">
+        </div>
+    </md-content>
 
     <md-sidenav class="md-sidenav-right md-whiteframe-2dp navbar">
         <div ng-controller="LeftNavCtrl">

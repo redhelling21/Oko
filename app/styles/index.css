@@ -42,3 +42,6 @@
 	min-width: 12px !important;
 	-webkit-app-region: no-drag;
 }
+
+.grid-item { width: 25%; }
+.grid-item--width2 { width: 50%; }

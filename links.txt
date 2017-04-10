@@ -1,0 +1,4 @@
+http://fiddle.jshell.net/NTsZx/light/
+https://github.com/diego-vieira/ng-isotope/blob/master/demo.html
+https://github.com/diego-vieira/ng-isotope/blob/master/ng-isotope.js
+https://openclassrooms.com/courses/developpez-vos-applications-web-avec-angularjs/les-directives-3

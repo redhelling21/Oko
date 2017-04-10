@@ -1,8 +1,9 @@
 'use strict';
 const electron = require('electron');
 const app = electron.app;
-const remote = require('electron').remote;
-
+const remote = electron.remote;
+const dialog = electron.dialog
+var child;
 // adds debug features like hotkeys for triggering dev tools and reload
 require('electron-debug')();
 
@@ -10,36 +11,53 @@ require('electron-debug')();
 let mainWindow;
 
 function onClosed() {
-	// dereference the window
-	// for multiple windows store them in an array
-	mainWindow = null;
+    // dereference the window
+    // for multiple windows store them in an array
+    mainWindow = null;
 }
 
 function createMainWindow() {
-	const win = new electron.BrowserWindow({
-		width: 1400,
-		height: 1000,
-		frame: true
-	});
+    const win = new electron.BrowserWindow({
+        width: 1400,
+        height: 1000,
+        frame: true
+    });
 
-	win.loadURL(`file://${__dirname}/index.html`);
-	win.on('closed', onClosed);
+    win.loadURL(`file://${__dirname}/index.html`);
+    win.on('closed', onClosed);
 
-	return win;
+    return win;
 }
 
 app.on('window-all-closed', () => {
-	if (process.platform !== 'darwin') {
-		app.quit();
-	}
+    if (process.platform !== 'darwin') {
+        if(child !== undefined){
+        	child.kill();
+        }
+        app.quit();
+    }
 });
 
 app.on('activate', () => {
-	if (!mainWindow) {
-		mainWindow = createMainWindow();
-	}
+    if (!mainWindow) {
+        mainWindow = createMainWindow();
+    }
 });
 
 app.on('ready', () => {
-	mainWindow = createMainWindow();
+    mainWindow = createMainWindow();
 });
+
+exports.selectDirectory = function() {
+    dialog.showOpenDialog(mainWindow, {
+        properties: ['openDirectory']
+    })
+}
+
+global.scanFolders = function(dir){
+	var args = [dir];
+	child = require('child_process').fork(`app/scripts/folderScanner.js`, args);
+	child.on('message', function (message) {
+		console.log(message);
+	}); 
+}

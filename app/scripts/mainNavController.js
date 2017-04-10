@@ -1,17 +1,30 @@
 angApp.
-controller('MainNavCtrl', function($scope, $mdDialog){
-	$scope.showSettings = function(ev) {
+controller('MainNavCtrl', function($scope, $mdDialog) {
+    const dialog = remote.dialog;
+    const fs = remote.require('fs');
+    $scope.showSettings = function(ev) {
         $mdDialog.show({
             controller: 'SettingsCtrl',
-          templateUrl: 'views/settings.html',
-          parent: angular.element(document.body),
-          targetEvent: ev,
-          clickOutsideToClose:false
-  })
+            templateUrl: 'views/settings.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose: false
+        })
         .then(function(answer) {
-          $scope.status = 'You said the information was "' + answer + '".';
-      }, function() {
-          $scope.status = 'You cancelled the dialog.';
-      });
+            $scope.status = 'You said the information was "' + answer + '".';
+        }, function() {
+            $scope.status = 'You cancelled the dialog.';
+        });
+    };
+    $scope.selectFolderToExplore = function(ev) {
+        dialog.showOpenDialog(remote.getCurrentWindow(), {
+            defaultPath: 'c:/',
+            properties: ['openDirectory']
+        }, function(fileNames) {
+            if (fileNames === undefined) return;
+            var fileName = fileNames[0];
+            var fct = remote.getGlobal('scanFolders');
+            fct(fileName);
+        })
     };
 });

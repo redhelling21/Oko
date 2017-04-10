@@ -59,5 +59,5 @@ global.scanFolders = function(dir){
 	child = require('child_process').fork(`app/scripts/folderScanner.js`, args);
 	child.on('message', function (message) {
 		console.log(message);
-	}); 
+	});
 }

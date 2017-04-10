@@ -1,6 +1,5 @@
 const remote = require('electron').remote;
-const jquery = require('jquery');
-const isotope = require('isotope-layout');
+
 var angApp = angular.module('myApp', ['ngMaterial']);
 angApp.config(function($mdThemingProvider) {
     $mdThemingProvider.theme('default')

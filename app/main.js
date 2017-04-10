@@ -1,5 +1,6 @@
 'use strict';
 const electron = require('electron');
+const {ipcMain} = require('electron')
 const app = electron.app;
 const remote = electron.remote;
 const dialog = electron.dialog
@@ -17,10 +18,10 @@ function onClosed() {
 }
 
 function createMainWindow() {
-    const win = new electron.BrowserWindow({
+    var win = new electron.BrowserWindow({
         width: 1400,
         height: 1000,
-        frame: true
+        frame: false
     });
 
     win.loadURL(`file://${__dirname}/index.html`);
@@ -54,10 +55,14 @@ exports.selectDirectory = function() {
     })
 }
 
-global.scanFolders = function(dir){
+var scanFolders = function(dir, event){
 	var args = [dir];
 	child = require('child_process').fork(`app/scripts/folderScanner.js`, args);
 	child.on('message', function (message) {
-		console.log(message);
+        event.sender.send('scan-folders-reply', message);
 	});
 }
+
+ipcMain.on('scan-folders', (event, arg) => {
+  scanFolders(arg, event);
+})

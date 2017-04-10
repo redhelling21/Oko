@@ -1,6 +1,7 @@
 angApp.
 controller('MainNavCtrl', function($scope, $mdDialog) {
     const dialog = remote.dialog;
+    const {ipcRenderer} = require('electron');
     const fs = remote.require('fs');
     $scope.showSettings = function(ev) {
         $mdDialog.show({
@@ -23,8 +24,7 @@ controller('MainNavCtrl', function($scope, $mdDialog) {
         }, function(fileNames) {
             if (fileNames === undefined) return;
             var fileName = fileNames[0];
-            var fct = remote.getGlobal('scanFolders');
-            fct(fileName);
+            ipcRenderer.send('scan-folders', fileName);
         })
     };
 });

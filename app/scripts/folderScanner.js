@@ -1,6 +1,5 @@
 const electron = require('electron');
 const fs = require('fs');
-
 var walkSync = function(dir, filelist) {
         try {
             var fs = fs || require('fs'),
@@ -13,7 +12,6 @@ var walkSync = function(dir, filelist) {
                 else {
                     if(['png', 'jpg'].indexOf(file.split('.').pop()) !== -1){
                     	filelist.push(dir + '/' + file);
-                    	console.log(dir + '/' + file);
                 	}
                 }
             });

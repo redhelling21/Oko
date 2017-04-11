@@ -1,5 +1,5 @@
 angApp.
-controller('GalleryCtrl', function($scope) {
+controller('GalleryCtrl', ['$scope','angularGridInstance', function($scope) {
     const {ipcRenderer} = require('electron');
     $scope.tiles = [];
 
@@ -25,7 +25,9 @@ controller('GalleryCtrl', function($scope) {
       $scope.$apply();
       console.log("fin update");
     });
-
+    $scope.refresh = function(){
+            angularGridInstance.gallery.refresh();
+        }
 
       $scope.card = {};
       $scope.card.title = 'test';
@@ -52,4 +54,4 @@ controller('GalleryCtrl', function($scope) {
 
 
 
-});
+}]);

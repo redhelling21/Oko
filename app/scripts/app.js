@@ -15,13 +15,10 @@ angApp.directive('imageonload', function() {
             element.bind('load', function() {
                 var scale = 0;
                 if(this.naturalWidth < this.naturalHeight){
-                    scale = 400/this.naturalWidth;
+                    scale = 300/this.naturalWidth;
                 }else{
-                    scale = 400/this.naturalHeight;
+                    scale = 300/this.naturalHeight;
                 }
-                console.log(scale);
-                console.log(this.naturalHeight*scale)
-                console.log(this.naturalWidth*scale)
                 /*var css = {
                     'height': (this.naturalHeight*scale) + 'px',
                     'width': (this.naturalWidth*scale) + 'px',
@@ -37,11 +34,8 @@ angApp.directive('imageonload', function() {
                 }
                 angular.element(this).css(css);
                 angular.element(this).parent().css(css_parent);*/
-                var css = {
-                    'height': (this.naturalHeight*scale) + 'px',
-                    'width': (this.naturalWidth*scale) + 'px',
-                }
-                angular.element(this).css(css);
+                attrs.$set('data-actual-width', this.naturalWidth*scale);
+                attrs.$set('data-actual-height', this.naturalHeight*scale);
             });
         }
     };

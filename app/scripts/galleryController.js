@@ -1,5 +1,5 @@
 angApp.
-controller('GalleryCtrl', function($scope, $q) {
+controller('GalleryCtrl', function($scope) {
     const {ipcRenderer} = require('electron');
     $scope.tiles = [];
 
@@ -21,7 +21,7 @@ controller('GalleryCtrl', function($scope, $q) {
       });
       $scope.tiles = temp;
       $scope.page = 0;
-      $scope.loadMoreShots();
+      $scope.shots = $scope.tiles;
       $scope.$apply();
       console.log("fin update");
     });
@@ -48,7 +48,7 @@ controller('GalleryCtrl', function($scope, $q) {
         }
         $scope.loadingMore = false;
       };
-      $scope.loadMoreShots();
+      //$scope.loadMoreShots();
 
 
 

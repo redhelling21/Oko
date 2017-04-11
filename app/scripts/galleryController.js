@@ -5,6 +5,7 @@ controller('GalleryCtrl', ['$scope', 'angularGridInstance', function($scope, ang
     } = require('electron');
     $scope.tiles = [];
     $scope.shots = []
+    $scope.page = 0;
     ipcRenderer.on('scan-folders-reply', (event, arg) => {
         console.log("folder reply");
         var paths = arg.paths;
@@ -22,9 +23,7 @@ controller('GalleryCtrl', ['$scope', 'angularGridInstance', function($scope, ang
         });
         $scope.tiles = temp;
         $scope.clearShots();
-        $scope.shots = $scope.tiles;
-        $scope.$apply();
-        $scope.refresh();
+        $scope.loadMore();
     });
     $scope.refresh = function() {
         angularGridInstance.gallery.refresh();
@@ -38,4 +37,20 @@ controller('GalleryCtrl', ['$scope', 'angularGridInstance', function($scope, ang
 
         console.log("fin clear");
     }
-}]);
+    
+    $scope.loadMore = function(){
+        console.log("loadmore");
+        if(($scope.page + 1)*50 >= $scope.tiles.length ){
+            $scope.shots = $scope.tiles;
+        }else{
+            for(var i = $scope.page * 50; i < ($scope.page + 1)*50; i++){
+                $scope.shots.push($scope.tiles[i]);
+            }
+        }
+
+        $scope.page++;
+        $scope.$apply();
+        $scope.refresh();
+    };
+}
+]);

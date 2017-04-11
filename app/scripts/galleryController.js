@@ -1,5 +1,5 @@
 angApp.
-controller('GalleryCtrl', ['$scope','angularGridInstance', function($scope) {
+controller('GalleryCtrl', ['$scope','angularGridInstance', function($scope, angularGridInstance) {
     const {ipcRenderer} = require('electron');
     $scope.tiles = [];
 
@@ -21,11 +21,14 @@ controller('GalleryCtrl', ['$scope','angularGridInstance', function($scope) {
       });
       $scope.tiles = temp;
       $scope.page = 0;
+      $scope.clearShots();
       $scope.shots = $scope.tiles;
+
       $scope.$apply();
+      $scope.refresh();
       console.log("fin update");
     });
-    $scope.refresh = function(){
+        $scope.refresh = function(){
             angularGridInstance.gallery.refresh();
         }
 
@@ -34,24 +37,12 @@ controller('GalleryCtrl', ['$scope','angularGridInstance', function($scope) {
       $scope.page = 0;
       $scope.loadingMore = false;
       $scope.shots = []
+      
 
-      $scope.loadMoreShots = function() {
-        $scope.page++;
-        // var deferred = $q.defer();
-        $scope.loadingMore = true;
-        var temp = $scope.shots;
-        if($scope.page * 25 >= $scope.tiles.length){
-            $scope.shots = $scope.tiles;
-        }else{
-            for (i = $scope.page*25; i < ($scope.page + 1)*25; i++) {
-                temp.push($scope.tiles[i]);
-            }
-            $scope.shots = temp;
+      $scope.clearShots = function(){
+        var size = $scope.shots.length;
+        for(i = 0; i<size;i++){
+            $scope.shots(size - 1 - i, 1)
         }
-        $scope.loadingMore = false;
-      };
-      //$scope.loadMoreShots();
-
-
-
+      }
 }]);

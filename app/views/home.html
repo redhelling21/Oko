@@ -39,7 +39,7 @@
         </md-sidenav>
     </div>
     <md-content id="content-scroller" ng-controller="GalleryCtrl" flex>
-      <ul class="dynamic-grid" angular-grid="shots" grid-width="300" gutter-size="10" refresh-on-img-load="true" angular-grid-id="gallery">
+      <ul class="dynamic-grid" angular-grid="shots" ag-grid-width="300" ag-gutter-size="10" ag-id="gallery">
      <li data-ng-repeat="shot in shots" class="grid">
          <img ng-src="{{ shot.path }}" class="grid-img"/>
      </li>

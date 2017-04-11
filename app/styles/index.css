@@ -66,3 +66,12 @@
     visibility: visible;
     opacity: 1;
 }
+
+.grid.ng-leave {
+  -webkit-transition: none;
+  transition: none;
+}
+.grid.ng-leave.ng-leave-active {
+  -webkit-transform: none;
+  opacity: 0;
+}

@@ -1,48 +1,38 @@
 angApp.
-controller('GalleryCtrl', ['$scope','angularGridInstance', function($scope, angularGridInstance) {
-    const {ipcRenderer} = require('electron');
+controller('GalleryCtrl', ['$scope', 'angularGridInstance', function($scope, angularGridInstance) {
+    const {
+        ipcRenderer
+    } = require('electron');
     $scope.tiles = [];
-
+    $scope.shots = []
     ipcRenderer.on('scan-folders-reply', (event, arg) => {
-      console.log("folder reply");
-      var paths = arg.paths;
-      var temp = [];
-      var i = 0;
-      paths.forEach(function(value){
-        //var css={
-        //    'background-image': "url('file:///" + value.replace(/\\/g,"/") + "')"
-        //}
-        temp.push({
-            path: value,
-            id: i
-            //style: css
+        console.log("folder reply");
+        var paths = arg.paths;
+        var temp = [];
+        var i = 0;
+        paths.forEach(function(value) {
+            temp.push({
+                path: value,
+                id: i
+            });
+            i++;
         });
-        i++;
-      });
-      $scope.tiles = temp;
-      $scope.page = 0;
-      $scope.clearShots();
-      $scope.shots = $scope.tiles;
-
-      $scope.$apply();
-      $scope.refresh();
-      console.log("fin update");
+        $scope.tiles = temp;
+        $scope.clearShots();
+        $scope.shots = $scope.tiles;
+        $scope.$apply();
+        $scope.refresh();
     });
-        $scope.refresh = function(){
+    $scope.refresh = function() {
+        angularGridInstance.gallery.refresh();
+    }
+
+    $scope.clearShots = function() {
+        for (var j = 0; j < $scope.shots.length; j++) {
+            $scope.shots.splice(j, 1);
             angularGridInstance.gallery.refresh();
         }
 
-      $scope.card = {};
-      $scope.card.title = 'test';
-      $scope.page = 0;
-      $scope.loadingMore = false;
-      $scope.shots = []
-      
-
-      $scope.clearShots = function(){
-        var size = $scope.shots.length;
-        for(i = 0; i<size;i++){
-            $scope.shots(size - 1 - i, 1)
-        }
-      }
+        console.log("fin clear");
+    }
 }]);

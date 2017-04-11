@@ -42,6 +42,14 @@
       <ul class="dynamic-grid" angular-grid="shots" ag-grid-width="300" ag-gutter-size="10" ag-id="gallery">
      <li data-ng-repeat="shot in shots" class="grid">
          <img ng-src="{{ shot.path }}" class="grid-img"/>
+         <div class="img-desc-wrap">
+             <!--<md-icon class="card-button" md-svg-src="assets/svg/placeholder.svg" data-ng-style="shot.hasGeo && {'color':'#ff5a5a'}"></md-icon>
+             <md-icon class="card-button" md-svg-src="assets/svg/tags.svg" data-ng-style="shot.hasTags && {'color':'#2687e2'}"></md-icon>
+             <md-icon class="card-button" md-svg-src="assets/svg/star.svg" data-ng-style="shot.hasTags && {'color':'#efbd40'}"></md-icon>!-->
+             <md-icon class="card-button" md-font-set="material-icons" data-ng-style="shot.hasGeo && {'color':'#ff5a5a'}">place</md-icon>
+             <md-icon class="card-button" md-font-set="material-icons" data-ng-style="shot.hasStars && {'color':'#efbd40'}">star</md-icon>
+             <md-icon class="card-button" md-font-set="material-icons" data-ng-style="shot.hasTags && {'color':'#2687e2'}">style</md-icon>
+         </div>
      </li>
  </ul>
     </md-content>

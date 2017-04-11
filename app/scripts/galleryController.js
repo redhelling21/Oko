@@ -13,7 +13,10 @@ controller('GalleryCtrl', ['$scope', 'angularGridInstance', function($scope, ang
         paths.forEach(function(value) {
             temp.push({
                 path: value,
-                id: i
+                id: i,
+                hasTags: false,
+                hasStars: false,
+                hasGeo: false
             });
             i++;
         });

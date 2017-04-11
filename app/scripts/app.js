@@ -7,38 +7,23 @@ angApp.config(function($mdThemingProvider) {
         .accentPalette('orange')
         .dark();
 });
-angApp.filter('unsafe', function($sce) {
-    return $sce.trustAsHtml;
-});
-angApp.directive('imageonload', function() {
+angApp.filter('unsafe', function($sce) { return $sce.trustAsHtml; });
+angApp.directive('sbLoad', ['$parse', function ($parse) {
     return {
-        restrict: 'A',
-        link: function(scope, element, attrs) {
-            element.bind('load', function() {
-                var scale = 0;
-                if (this.naturalWidth < this.naturalHeight) {
-                    scale = 300 / this.naturalWidth;
-                } else {
-                    scale = 300 / this.naturalHeight;
-                }
-                /*var css = {
-                    'height': (this.naturalHeight*scale) + 'px',
-                    'width': (this.naturalWidth*scale) + 'px',
-                    'position': 'absolute',
-                    'top': '-9999px',
-                    'bottom': '-9999px',
-                    'left': '-9999px',
-                    'right': '-9999px',
-                    'margin': 'auto'
-                }
-                var css_parent = {
-                    'min-height': (this.naturalHeight*scale > 400 ? 400 : this.naturalHeight*scale) + 'px'
-                }
-                angular.element(this).css(css);
-                angular.element(this).parent().css(css_parent);*/
-                attrs.$set('data-actual-width', this.naturalWidth * scale);
-                attrs.$set('data-actual-height', this.naturalHeight * scale);
-            });
-        }
+      restrict: 'A',
+      link: function (scope, elem, attrs) {
+        var fn = $parse(attrs.sbLoad);
+        elem.on('load', function (event) {
+          scope.$apply(function() {
+            fn(scope, { $event: event });
+          });
+        });
+      }
     };
+  }]);
+angApp.config(function($mdIconProvider) {
+    $mdIconProvider
+      .icon("world", "assets/svg/placeholder.svg", 64)
+      .icon("tags", "assets/svg/tags.svg", 64)
+      .icon("star", "assets/svg/star.svg", 64);
 });

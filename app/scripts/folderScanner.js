@@ -10,7 +10,7 @@ var walkSync = function(dir, filelist) {
                     filelist = walkSync(dir + '/' + file, filelist);
                 }
                 else {
-                    if(['png', 'jpg'].indexOf(file.split('.').pop()) !== -1){
+                    if(['png', 'jpg', 'jpeg'].indexOf(file.split('.').pop()) !== -1){
                     	filelist.push(dir + '/' + file);
                 	}
                 }

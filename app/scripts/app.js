@@ -8,3 +8,41 @@ angApp.config(function($mdThemingProvider) {
         .dark();
 });
 angApp.filter('unsafe', function($sce) { return $sce.trustAsHtml; });
+angApp.directive('imageonload', function() {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+            element.bind('load', function() {
+                var scale = 0;
+                if(this.naturalWidth < this.naturalHeight){
+                    scale = 400/this.naturalWidth;
+                }else{
+                    scale = 400/this.naturalHeight;
+                }
+                console.log(scale);
+                console.log(this.naturalHeight*scale)
+                console.log(this.naturalWidth*scale)
+                /*var css = {
+                    'height': (this.naturalHeight*scale) + 'px',
+                    'width': (this.naturalWidth*scale) + 'px',
+                    'position': 'absolute',
+                    'top': '-9999px',
+                    'bottom': '-9999px',
+                    'left': '-9999px',
+                    'right': '-9999px',
+                    'margin': 'auto'
+                }
+                var css_parent = {
+                    'min-height': (this.naturalHeight*scale > 400 ? 400 : this.naturalHeight*scale) + 'px'
+                }
+                angular.element(this).css(css);
+                angular.element(this).parent().css(css_parent);*/
+                var css = {
+                    'height': (this.naturalHeight*scale) + 'px',
+                    'width': (this.naturalWidth*scale) + 'px',
+                }
+                angular.element(this).css(css);
+            });
+        }
+    };
+});

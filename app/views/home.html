@@ -39,15 +39,15 @@
         </md-sidenav>
     </div>
     <md-content id="content-scroller" ng-controller="GalleryCtrl" flex>
-      <div 
-        class="cards-wrap" 
-        angular-grid="shots" 
-        gutter-size="10" 
-        angular-grid-id="shots" 
-        infinite-scroll-container="#content-scroller" 
+      <div
+        class="cards-wrap"
+        angular-grid="shots"
+        gutter-size="10"
+        angular-grid-id="shots"
+        infinite-scroll-container="#content-scroller"
         infinite-scroll="loadMoreShots()">
-        <div class="card" ng-repeat="shot in shots track by shot.id" flex>
-            <img ng-src="{{ shot.path }}" sb-load="onImgLoad($event)">
+        <div class="card" ng-repeat="shot in shots track by shot.id">
+            <img ng-src="{{ shot.path }}" imageonload>
         </div>
       </div>
     </md-content>

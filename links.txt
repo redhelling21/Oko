@@ -1,3 +1,1 @@
-http://yiotis.net/filterizr/
-https://www.kunkalabs.com/mixitup/
-https://vestride.github.io/Shuffle/
+https://codepen.io/acondiff/pen/yepggM

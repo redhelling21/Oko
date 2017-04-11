@@ -1,15 +1,17 @@
-<md-grid-list
-        md-cols="1" md-cols-sm="2" md-cols-md="3" md-cols-gt-md="6" md-row-height="1:1"
-        md-gutter="8px" md-gutter-gt-sm="4px" flex>
-
-    <md-grid-tile ng-repeat="tile in tiles"
-                  md-rowspan="1"
-                  md-colspan="1"
-                  md-colspan-sm="1"
-                  md-colspan-xs="1">
-      
-        <img ng-src="{{ tile.path }}" style="max-width: 100%; max-height: 100%;">
-      
-      <md-grid-tile-footer><h3>test</h3></md-grid-tile-footer>
-    </md-grid-tile>
-  </md-grid-list>
+<md-content id="content-scroller">
+<div 
+         class="cards-wrap" 
+         angular-grid="shots" 
+         gutter-size="8" 
+         angular-grid-id="shots" 
+         infinite-scroll-container="#content-scroller" 
+         infinite-scroll-threshold="500"
+         infinite-scroll="loadMoreShots()">
+      <div class="card" ng-repeat="shot in shots track by $index">
+        <img class="img" ng-src="{{shot.path}}">
+        
+      <div class="loading-more-indicator" ng-show="loadingMore">
+        <md-progress-circular md-mode="indeterminate" md-diameter="64" class="progress-swatch"></md-progress-circular>
+      </div>
+    </div>
+</md-content>

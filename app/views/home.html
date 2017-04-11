@@ -38,12 +38,19 @@
             </md-list>
         </md-sidenav>
     </div>
-
-    <md-content flex id="content">
-        <div ng-include src="'views/gallery.html'" ng-controller="GalleryCtrl" layout="column">
+    <md-content id="content-scroller" ng-controller="GalleryCtrl" flex>
+      <div 
+        class="cards-wrap" 
+        angular-grid="shots" 
+        gutter-size="10" 
+        angular-grid-id="shots" 
+        infinite-scroll-container="#content-scroller" 
+        infinite-scroll="loadMoreShots()">
+        <div class="card" ng-repeat="shot in shots track by shot.id" flex>
+            <img ng-src="{{ shot.path }}" sb-load="onImgLoad($event)">
         </div>
+      </div>
     </md-content>
-
     <md-sidenav class="md-sidenav-right md-whiteframe-2dp navbar">
         <div ng-controller="LeftNavCtrl">
             <md-list>

@@ -7,17 +7,19 @@ angApp.config(function($mdThemingProvider) {
         .accentPalette('orange')
         .dark();
 });
-angApp.filter('unsafe', function($sce) { return $sce.trustAsHtml; });
+angApp.filter('unsafe', function($sce) {
+    return $sce.trustAsHtml;
+});
 angApp.directive('imageonload', function() {
     return {
         restrict: 'A',
         link: function(scope, element, attrs) {
             element.bind('load', function() {
                 var scale = 0;
-                if(this.naturalWidth < this.naturalHeight){
-                    scale = 300/this.naturalWidth;
-                }else{
-                    scale = 300/this.naturalHeight;
+                if (this.naturalWidth < this.naturalHeight) {
+                    scale = 300 / this.naturalWidth;
+                } else {
+                    scale = 300 / this.naturalHeight;
                 }
                 /*var css = {
                     'height': (this.naturalHeight*scale) + 'px',
@@ -34,8 +36,8 @@ angApp.directive('imageonload', function() {
                 }
                 angular.element(this).css(css);
                 angular.element(this).parent().css(css_parent);*/
-                attrs.$set('data-actual-width', this.naturalWidth*scale);
-                attrs.$set('data-actual-height', this.naturalHeight*scale);
+                attrs.$set('data-actual-width', this.naturalWidth * scale);
+                attrs.$set('data-actual-height', this.naturalHeight * scale);
             });
         }
     };

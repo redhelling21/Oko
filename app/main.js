@@ -32,8 +32,8 @@ function createMainWindow() {
 
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
-        if(child !== undefined){
-        	child.kill();
+        if (child !== undefined) {
+            child.kill();
         }
         app.quit();
     }
@@ -55,14 +55,14 @@ exports.selectDirectory = function() {
     })
 }
 
-var scanFolders = function(dir, event){
-	var args = [dir];
-	child = require('child_process').fork(`app/scripts/folderScanner.js`, args);
-	child.on('message', function (message) {
+var scanFolders = function(dir, event) {
+    var args = [dir];
+    child = require('child_process').fork(`app/scripts/folderScanner.js`, args);
+    child.on('message', function(message) {
         event.sender.send('scan-folders-reply', message);
-	});
+    });
 }
 
 ipcMain.on('scan-folders', (event, arg) => {
-  scanFolders(arg, event);
+    scanFolders(arg, event);
 })

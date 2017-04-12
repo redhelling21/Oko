@@ -27,4 +27,8 @@ controller('MainNavCtrl', function($scope, $mdDialog) {
             ipcRenderer.send('scan-folders', fileName);
         })
     };
+
+    $scope.toggleMultiSelect = function(){
+        $scope.$parent.multiSelect = !$scope.$parent.multiSelect;
+    }
 });

@@ -1,13 +1,14 @@
 angApp.
 controller('GalleryCtrl', ['$scope', 'angularGridInstance', function($scope, angularGridInstance) {
-    const {
-        ipcRenderer
-    } = require('electron');
+    const {ipcRenderer} = require('electron');
+
     $scope.tiles = [];
-    $scope.shots = []
+    $scope.shots = [];
+    $scope.selectedImgs = [];
     $scope.page = 0;
+    $scope.fullyLoaded = false;
+
     ipcRenderer.on('scan-folders-reply', (event, arg) => {
-        console.log("folder reply");
         var paths = arg.paths;
         var temp = [];
         var i = 0;
@@ -17,14 +18,17 @@ controller('GalleryCtrl', ['$scope', 'angularGridInstance', function($scope, ang
                 id: i,
                 hasTags: false,
                 hasStars: false,
-                hasGeo: false
+                hasGeo: false,
+                isSelected: false
             });
             i++;
         });
         $scope.tiles = temp;
         $scope.clearShots();
+        $scope.fullyLoaded = false;
         $scope.loadMore();
     });
+
     $scope.refresh = function() {
         angularGridInstance.gallery.refresh();
     }
@@ -34,23 +38,32 @@ controller('GalleryCtrl', ['$scope', 'angularGridInstance', function($scope, ang
             $scope.shots.splice(j, 1);
             angularGridInstance.gallery.refresh();
         }
-
-        console.log("fin clear");
     }
-    
-    $scope.loadMore = function(){
-        console.log("loadmore");
-        if(($scope.page + 1)*50 >= $scope.tiles.length ){
-            $scope.shots = $scope.tiles;
-        }else{
-            for(var i = $scope.page * 50; i < ($scope.page + 1)*50; i++){
-                $scope.shots.push($scope.tiles[i]);
-            }
-        }
 
-        $scope.page++;
-        $scope.$apply();
-        $scope.refresh();
+    $scope.loadMore = function(){
+        if(!$scope.fullyLoaded){
+            if(($scope.page + 1)*50 >= $scope.tiles.length ){
+                $scope.shots = $scope.tiles;
+                $scope.fullyLoaded = true;
+            }else{
+                for(var i = $scope.page * 50; i < ($scope.page + 1)*50; i++){
+                    $scope.shots.push($scope.tiles[i]);
+                }
+            }
+            $scope.page++;
+            $scope.$apply();
+            $scope.refresh();
+        }
     };
+
+    $scope.selectImg = function(shot){
+        var idx = $scope.selectedImgs.indexOf(shot.id);
+        if (idx > -1) {
+          list.splice(idx, 1);
+        }
+        else {
+          list.push(shot.id);
+        }
+    }
 }
 ]);

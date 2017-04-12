@@ -43,6 +43,12 @@
 	-webkit-app-region: no-drag;
 }
 
+.img-checkbox{
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
 .grid {
     list-style: none;
     box-sizing: border-box;

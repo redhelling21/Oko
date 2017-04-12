@@ -26,7 +26,7 @@
                 </md-list-item>
                 <md-list-item class="navbar-item">
                     <md-button class="navbar-button">
-                        <md-icon md-svg-src="assets/svg/check.svg" class="navbar-svg"></md-icon>
+                        <md-icon md-svg-src="assets/svg/check.svg" class="navbar-svg" ng-click="toggleMultiSelect()"></md-icon>
                     </md-button>
                 </md-list-item>
                 <md-list-item class="navbar-item">
@@ -42,6 +42,7 @@
       <ul class="dynamic-grid" angular-grid="shots" ag-grid-width="300" ag-gutter-size="10" ag-id="gallery" ag-scroll-container="#gallery-wrap" ag-infinite-scroll="loadMore()">
      <li data-ng-repeat="shot in shots" class="grid">
          <img ng-src="{{ shot.path }}" class="grid-img"/>
+         <md-checkbox class="img-checkbox" ng-show="$parent.multiSelect" ng-model="shot.isSelected"></md-checkbox>
          <div class="img-desc-wrap">
              <!--<md-icon class="card-button" md-svg-src="assets/svg/placeholder.svg" data-ng-style="shot.hasGeo && {'color':'#ff5a5a'}"></md-icon>
              <md-icon class="card-button" md-svg-src="assets/svg/tags.svg" data-ng-style="shot.hasTags && {'color':'#2687e2'}"></md-icon>

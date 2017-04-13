@@ -9,7 +9,7 @@ controller('GalleryCtrl', ['$scope', 'angularGridInstance', function($scope, ang
     $scope.fullyLoaded = false;
 
     ipcRenderer.on('scan-folders-reply', (event, arg) => {
-        var paths = arg;
+        var paths = arg.paths;
         var temp = [];
         var i = 0;
         paths.forEach(function(value) {

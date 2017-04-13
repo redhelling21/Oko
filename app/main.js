@@ -65,14 +65,12 @@ var scanFolders = async function(dir, event) {
     var metadatas = await readMeta(pathList);
 
     pathList.forEach(function(path){
-        console.log(metadatas[i].data[0])
         imageList.push({
             path: path,
             metadata: metadatas[i].data[0]
         });
         i++;
     })
-    console.log("Apres readmeta ?");
     event.sender.send('scan-folders-reply', imageList);
 }
 

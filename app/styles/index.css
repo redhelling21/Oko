@@ -89,19 +89,39 @@
 	background-color: #212121;
 }
 
-.card-button{
+.card-icon{
 	padding: 2px 2px 2px 2px;
 	color: #6d6d6d;
 }
 
-.card-button:hover{
+.card-icon:hover{
 	padding: 2px 2px 2px 2px;
 	color: #dedede;
+}
+
+.card-button {
+	margin: 0px !important;
+    padding: 0px !important;
+    line-height: 20px !important;
+    min-height: 0px !important;
+    min-width: 0px !important;
 }
 
 .dynamic-grid{
 	margin-right: 10px;
 	margin-left: 10px;
+}
+
+.tooltip {
+    position: relative;
+    opacity: 1;
+    font-size: 14px !important;
+}
+
+md-tooltip .md-content {
+    height: auto !important;
+    max-width: 500px !important;
+    padding : 5px;
 }
 
 ::-webkit-scrollbar {

@@ -9,19 +9,28 @@ controller('GalleryCtrl', ['$scope', 'angularGridInstance', function($scope, ang
     $scope.fullyLoaded = false;
 
     ipcRenderer.on('scan-folders-reply', (event, arg) => {
-        var images = arg, temp = [], i = 0, hasTags, hasStars, hasGeo, hasMetas;
+        var images = arg, temp = [], i = 0, hasTags, hasStars, hasGeo, hasMetas, image;
         images.forEach(function(value) {
-            hasMetas = (value.metadata != null);
-            temp.push({
+            image = {
                 path: value.path,
                 id: i,
-                hasTags: false,
-                hasStars: false,
-                hasGeo: false,
-                isSelected: false,
-                hasMetas: hasMetas,
-                metadata: value.metadata
-            });
+                isSelected: false
+            }
+            image.hasMetas = (value.metadata !== null);
+            if(image.hasMetas){
+                image.hasTags = (value.metadata.hasOwnProperty('Subject'));
+                if(image.hasTags){
+                    image.tags = value.metadata.Subject;
+                    console.log(value.metadata.Subject);
+                }
+                image.hasStars = false;
+                image.hasGeo = false;
+            }else{
+                image.hasTags = false;
+                image.hasStars = false;
+                image.hasGeo = false;
+            }
+            temp.push(image);
             i++;
         });
         $scope.tiles = temp;

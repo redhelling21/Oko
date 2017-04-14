@@ -22,7 +22,7 @@
                     </md-button>
                 </md-list-item>
                 <md-list-item class="navbar-item">
-                    <md-button class="navbar-button">
+                    <md-button class="navbar-button" ng-click="toggleFilterNav()">
                         <md-tooltip md-direction="right" class="tooltip">Trier...</md-tooltip>
                         <md-icon md-svg-src="assets/svg/filter-filled-tool-symbol.svg" class="navbar-svg"></md-icon>
                     </md-button>
@@ -44,51 +44,80 @@
         </md-sidenav>
     </div>
     <md-content id="gallery-wrap" ng-controller="GalleryCtrl" flex>
-      <ul class="dynamic-grid" angular-grid="shots" ag-grid-width="300" ag-gutter-size="10" ag-id="gallery" ag-scroll-container="#gallery-wrap" ag-infinite-scroll="loadMore()">
-     <li data-ng-repeat="shot in shots" class="grid">
-         <img ng-src="{{ shot.path }}" class="grid-img"/>
-         <md-checkbox class="img-checkbox" ng-show="$parent.multiSelect" ng-model="shot.isSelected"></md-checkbox>
-         <div class="img-desc-wrap">
-             <!--<md-icon class="card-button" md-svg-src="assets/svg/placeholder.svg" data-ng-style="shot.hasGeo && {'color':'#ff5a5a'}"></md-icon>
-             <md-icon class="card-button" md-svg-src="assets/svg/tags.svg" data-ng-style="shot.hasTags && {'color':'#2687e2'}"></md-icon>
-             <md-icon class="card-button" md-svg-src="assets/svg/star.svg" data-ng-style="shot.hasTags && {'color':'#efbd40'}"></md-icon>!-->
-             <md-button class="card-button" style="background:transparent">
-                <md-icon class="card-icon" md-font-set="material-icons" data-ng-style="shot.hasGeo && {'color':'#ff5a5a'}">place</md-icon>
-             </md-button>
-             <md-button class="card-button" style="background:transparent">
-                <md-icon class="card-icon" md-font-set="material-icons" data-ng-style="shot.hasStars && {'color':'#efbd40'}">star</md-icon>
-             </md-button>
-             <md-button class="card-button" style="background:transparent">
-                <md-icon class="card-icon" md-font-set="material-icons" data-ng-style="shot.hasTags && {'color':'#2687e2'}">style</md-icon>
-             </md-button>
-             <md-button class="card-button" style="background:transparent">
-                <md-tooltip md-direction="top" class="tooltip">{{ shot.path }}</md-tooltip>
-                <md-icon class="card-icon" md-font-set="material-icons" style="color: #dedede">info</md-icon>
-             </md-button>
-         </div>
-     </li>
- </ul>
-    </md-content>
-    <md-sidenav class="md-sidenav-right md-whiteframe-2dp navbar">
-        <div ng-controller="LeftNavCtrl">
+        <md-sidenav md-is-locked-open="false" class="md-sidenav-left md-whiteframe-2dp navbar" md-component-id="filternav">
             <md-list>
                 <md-list-item class="navbar-item">
+                    <md-button class="navbar-button" ng-click="selectFolderToExplore()">
+                        <md-tooltip md-direction="right" class="tooltip">Ouvrir...</md-tooltip>
+                        <md-icon md-svg-src="assets/svg/open-folder.svg" class="navbar-svg"></md-icon>
+                    </md-button>
+                </md-list-item>
+                <md-list-item class="navbar-item">
                     <md-button class="navbar-button">
+                        <md-tooltip md-direction="right" class="tooltip">Trier...</md-tooltip>
                         <md-icon md-svg-src="assets/svg/filter-filled-tool-symbol.svg" class="navbar-svg"></md-icon>
                     </md-button>
                 </md-list-item>
                 <md-list-item class="navbar-item">
                     <md-button class="navbar-button">
-                        <md-icon md-svg-src="assets/svg/check.svg" class="navbar-svg"></md-icon>
+                        <md-tooltip md-direction="right" class="tooltip">Multi-sélection</md-tooltip>
+                        <md-icon md-svg-src="assets/svg/check.svg" class="navbar-svg" ng-click="toggleMultiSelect()"></md-icon>
                     </md-button>
                 </md-list-item>
                 <md-list-item class="navbar-item">
-                    <md-button class="navbar-button">
+                    <md-button class="navbar-button" ng-click="showSettings()">
+                        <md-tooltip md-direction="right" class="tooltip">Paramètres</md-tooltip>
                         <md-icon md-svg-src="assets/svg/parameters.svg" class="navbar-svg"></md-icon>
                     </md-button>
                 </md-list-item>
-            </md-list>
 
+            </md-list>
+        </md-sidenav>
+        <ul class="dynamic-grid" angular-grid="shots" ag-grid-width="300" ag-gutter-size="10" ag-id="gallery" ag-scroll-container="#gallery-wrap" ag-infinite-scroll="loadMore()">
+           <li data-ng-repeat="shot in shots" class="grid">
+               <img ng-src="{{ shot.path }}" class="grid-img"/>
+               <md-checkbox class="img-checkbox" ng-show="$parent.multiSelect" ng-model="shot.isSelected"></md-checkbox>
+               <div class="img-desc-wrap">
+             <!--<md-icon class="card-button" md-svg-src="assets/svg/placeholder.svg" data-ng-style="shot.hasGeo && {'color':'#ff5a5a'}"></md-icon>
+             <md-icon class="card-button" md-svg-src="assets/svg/tags.svg" data-ng-style="shot.hasTags && {'color':'#2687e2'}"></md-icon>
+             <md-icon class="card-button" md-svg-src="assets/svg/star.svg" data-ng-style="shot.hasTags && {'color':'#efbd40'}"></md-icon>!-->
+             <md-button class="card-button" style="background:transparent">
+             <md-icon class="card-icon material-icons" data-ng-style="shot.hasGeo && {'color':'#ff5a5a'}">place</md-icon>
+            </md-button>
+            <md-button class="card-button" style="background:transparent">
+                <md-icon class="card-icon material-icons" data-ng-style="shot.hasStars && {'color':'#efbd40'}">star</md-icon>
+            </md-button>
+            <md-button class="card-button" style="background:transparent">
+                <md-icon class="card-icon material-icons" data-ng-style="shot.hasTags && {'color':'#2687e2'}">style</md-icon>
+            </md-button>
+            <md-button class="card-button" style="background:transparent">
+                <md-tooltip md-direction="top" class="tooltip">{{ shot.path }}</md-tooltip>
+                <md-icon class="card-icon material-icons" style="color: #dedede">info</md-icon>
+            </md-button>
         </div>
-    </md-sidenav>
+    </li>
+</ul>
+</md-content>
+<md-sidenav class="md-sidenav-right md-whiteframe-2dp navbar">
+    <div ng-controller="RightNavCtrl">
+        <md-list>
+            <md-list-item class="navbar-item">
+                <md-button class="navbar-button">
+                    <md-icon md-svg-src="assets/svg/filter-filled-tool-symbol.svg" class="navbar-svg"></md-icon>
+                </md-button>
+            </md-list-item>
+            <md-list-item class="navbar-item">
+                <md-button class="navbar-button">
+                    <md-icon md-svg-src="assets/svg/check.svg" class="navbar-svg"></md-icon>
+                </md-button>
+            </md-list-item>
+            <md-list-item class="navbar-item">
+                <md-button class="navbar-button">
+                    <md-icon md-svg-src="assets/svg/parameters.svg" class="navbar-svg"></md-icon>
+                </md-button>
+            </md-list-item>
+        </md-list>
+
+    </div>
+</md-sidenav>
 </div>

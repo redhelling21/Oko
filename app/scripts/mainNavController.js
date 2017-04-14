@@ -1,5 +1,5 @@
 angApp.
-controller('MainNavCtrl', function($scope, $mdDialog) {
+controller('MainNavCtrl', function($scope, $mdDialog, $mdSidenav) {
     const dialog = remote.dialog;
     const {ipcRenderer} = require('electron');
     const fs = remote.require('fs');
@@ -30,5 +30,13 @@ controller('MainNavCtrl', function($scope, $mdDialog) {
 
     $scope.toggleMultiSelect = function(){
         $scope.$parent.multiSelect = !$scope.$parent.multiSelect;
+    }
+
+    $scope.toggleFilterNav = function(){
+        if($mdSidenav('filternav').isOpen()){
+            $mdSidenav('filternav').close();
+        }else{
+            $mdSidenav('filternav').toggle();
+        }
     }
 });

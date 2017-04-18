@@ -36,7 +36,17 @@ controller('MainNavCtrl', function($scope, $mdDialog, $mdSidenav) {
         if($mdSidenav('filternav').isOpen()){
             $mdSidenav('filternav').close();
         }else{
+            $mdSidenav('sortnav').close();
             $mdSidenav('filternav').toggle();
+        }
+    }
+
+    $scope.toggleSortNav = function(){
+        if($mdSidenav('sortnav').isOpen()){
+            $mdSidenav('sortnav').close();
+        }else{
+            $mdSidenav('filternav').close();
+            $mdSidenav('sortnav').toggle();
         }
     }
 });

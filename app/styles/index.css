@@ -3,7 +3,10 @@
 	max-width: 50px !important;
 	min-width: 50px !important;
 	overflow: visible !important;
+}
 
+.navbar-secondary {
+  border-left: 3px solid rgb(77, 88, 97);
 }
 
 .navbar-item {
@@ -20,6 +23,10 @@
 
 .navbar-svg {
 	color: #dddddd;
+}
+
+.navbar-font {
+  font-size: 20px;
 }
 
 #custom-toolbar-draggable {

@@ -23,8 +23,7 @@ controller('GalleryCtrl', ['$scope', 'angularGridInstance', function($scope, ang
             if(image.hasMetas){
                 image.hasTags = (value.metadata.hasOwnProperty('Subject'));
                 if(image.hasTags){
-                    image.tags = value.metadata.Subject;
-                    console.log(value.metadata.Subject);
+                    image.tags = image.tags.concat(value.metadata.Subject);
                 }
                 image.hasStars = false;
                 image.hasGeo = false;
@@ -33,6 +32,7 @@ controller('GalleryCtrl', ['$scope', 'angularGridInstance', function($scope, ang
                 image.hasStars = false;
                 image.hasGeo = false;
             }
+            console.log(image);
             temp.push(image);
             i++;
         });

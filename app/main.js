@@ -78,6 +78,17 @@ ipcMain.on('scan-folders', (event, arg) => {
     scanFolders(arg, event);
 })
 
+var writeDataList = async function(shots, event){
+    console.log("In main.js");
+    console.log(shots);
+    var promises = await writeMeta(shots);
+    event.sender.send('write-datas-reply', promises);
+}
+
+ipcMain.on('save-datas', (event, arg) => {
+    writeDataList(arg, event);
+})
+
 var walkSync = function(dir, filelist) {
         try {
             var fs = fs || require('fs'),
@@ -104,6 +115,17 @@ var readMeta = function(pathList){
     var promises = [];
     pathList.forEach(function(path){
         promises.push(ep.readMetadata(path));
+    });
+    return Promise.all(promises).catch(function(err) {
+                console.log('A promise failed to resolve', err);
+                return promises;
+            });
+}
+
+var writeMeta = function(shots){
+    var promises = [];
+    shots.forEach(function(value){
+        promises.push(ep.writeMetadata(value.path, {Subject: value.tags}, ['overwrite_original']));
     });
     return Promise.all(promises).catch(function(err) {
                 console.log('A promise failed to resolve', err);

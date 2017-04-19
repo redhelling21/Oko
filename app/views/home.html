@@ -1,143 +1,149 @@
 <md-toolbar id="custom-toolbar-draggable" layout="row" layout-align="end center">
-    <md-button class="toolbar-button" ng-click="reduceW()">
-        <md-icon md-svg-src="assets/svg/negative-sign.svg" class="toolbar-svg"></md-icon>
-    </md-button>
-    <md-button class="toolbar-button" ng-click="maxW()">
-        <md-icon md-svg-src="assets/svg/add-song.svg" class="toolbar-svg"></md-icon>
-    </md-button>
-    <md-button class="toolbar-button" ng-click="closeW()">
-        <md-icon md-svg-src="assets/svg/cancel-music.svg" class="toolbar-svg"></md-icon>
-    </md-button>
-
+   <md-button class="toolbar-button" ng-click="reduceW()">
+      <md-icon md-svg-src="assets/svg/negative-sign.svg" class="toolbar-svg"></md-icon>
+   </md-button>
+   <md-button class="toolbar-button" ng-click="maxW()">
+      <md-icon md-svg-src="assets/svg/add-song.svg" class="toolbar-svg"></md-icon>
+   </md-button>
+   <md-button class="toolbar-button" ng-click="closeW()">
+      <md-icon md-svg-src="assets/svg/cancel-music.svg" class="toolbar-svg"></md-icon>
+   </md-button>
 </md-toolbar>
 <div flex layout="row">
-    <div class="navbar-container" ng-controller="MainNavCtrl" layout="row">
-        <md-sidenav md-is-locked-open="true" class="md-sidenav-left md-whiteframe-2dp navbar">
-
-            <md-list>
-                <md-list-item class="navbar-item">
-                    <md-button class="navbar-button" ng-click="selectFolderToExplore()">
-                        <md-tooltip md-direction="right" class="tooltip">Ouvrir...</md-tooltip>
-                        <md-icon md-svg-src="assets/svg/open-folder.svg" class="navbar-svg"></md-icon>
-                    </md-button>
-                </md-list-item>
-                <md-list-item class="navbar-item">
-                    <md-button class="navbar-button" ng-click="toggleFilterNav()">
-                        <md-tooltip md-direction="right" class="tooltip">Filtrer...</md-tooltip>
-                        <md-icon md-svg-src="assets/svg/filter-filled-tool-symbol.svg" class="navbar-svg"></md-icon>
-                    </md-button>
-                </md-list-item>
-                <md-list-item class="navbar-item">
-                    <md-button class="navbar-button" ng-click="toggleSortNav()">
-                        <md-tooltip md-direction="right" class="tooltip">Trier...</md-tooltip>
-                        <md-icon class="zmdi zmdi-swap-vertical zmdi-hc-2-5x navbar-svg"></md-icon>
-                    </md-button>
-                </md-list-item>
-                <md-list-item class="navbar-item">
-                    <md-button class="navbar-button">
-                        <md-tooltip md-direction="right" class="tooltip">Multi-sélection</md-tooltip>
-                        <md-icon md-svg-src="assets/svg/check.svg" class="navbar-svg" ng-click="toggleMultiSelect()"></md-icon>
-                    </md-button>
-                </md-list-item>
-                <md-list-item class="navbar-item">
-                    <md-button class="navbar-button" ng-click="showSettings()">
-                        <md-tooltip md-direction="right" class="tooltip">Paramètres</md-tooltip>
-                        <md-icon md-svg-src="assets/svg/parameters.svg" class="navbar-svg"></md-icon>
-                    </md-button>
-                </md-list-item>
-
-            </md-list>
-        </md-sidenav>
-    </div>
-    <md-content id="gallery-wrap" ng-controller="GalleryCtrl" flex>
-        <md-sidenav md-is-locked-open="false" class="md-sidenav-left md-whiteframe-2dp navbar-secondary" md-component-id="filternav">
-            <md-list>
-                <md-list-item flex>
-                    <md-button class="navbar-button" ng-click="selectFolderToExplore()">
-                        <md-icon class="zmdi zmdi-refresh zmdi-hc-2-5x navbar-svg"></md-icon>
-                        Réinitialiser
-                    </md-button>
-                </md-list-item>
-                <md-list-item class="navbar-item">
-                    <md-button class="navbar-button">
-                        <md-tooltip md-direction="right" class="tooltip">Par nom</md-tooltip>
-                        <md-icon md-svg-src="assets/svg/filter-filled-tool-symbol.svg" class="navbar-svg"></md-icon>
-                    </md-button>
-                </md-list-item>
-
-            </md-list>
-        </md-sidenav>
-        <md-sidenav md-is-locked-open="false" class="md-sidenav-left md-whiteframe-2dp navbar navbar-secondary" md-component-id="sortnav">
-            <md-list>
-                <md-list-item class="navbar-item">
-                    <md-button class="navbar-button" ng-click="showSettings()">
-                        <md-tooltip md-direction="right" class="tooltip">Paramètres</md-tooltip>
-                        <span class="zmdi-hc-stack zmdi-hc-lg">
-                            <md-icon class="zmdi zmdi-square-o zmdi-hc-stack-2x"></md-icon>
-                            <md-icon class="zmdi zmdi-share zmdi-hc-stack-1x"></md-icon>
-                        </span>
-                    </md-button>
-                </md-list-item>
-                <md-list-item class="navbar-item">
-                    <md-button class="navbar-button" ng-click="showSettings()">
-                        <md-tooltip md-direction="right" class="tooltip">Paramètres</md-tooltip>
-                        <md-icon md-svg-src="assets/svg/parameters.svg" class="navbar-svg"></md-icon>
-                    </md-button>
-                </md-list-item>
-                <md-list-item class="navbar-item">
-                    <md-button class="navbar-button" ng-click="showSettings()">
-                        <md-tooltip md-direction="right" class="tooltip">Paramètres</md-tooltip>
-                        <md-icon md-svg-src="assets/svg/parameters.svg" class="navbar-svg"></md-icon>
-                    </md-button>
-                </md-list-item>
-
-            </md-list>
-        </md-sidenav>
-        <ul class="dynamic-grid" angular-grid="shots" ag-grid-width="300" ag-gutter-size="10" ag-id="gallery" ag-scroll-container="#gallery-wrap" ag-infinite-scroll="loadMore()">
-           <li data-ng-repeat="shot in shots" class="grid">
-               <img ng-src="{{ shot.path }}" class="grid-img"/>
-               <md-checkbox class="img-checkbox" ng-show="$parent.multiSelect" ng-model="shot.isSelected"></md-checkbox>
-               <div class="img-desc-wrap">
-             <!--<md-icon class="card-button" md-svg-src="assets/svg/placeholder.svg" data-ng-style="shot.hasGeo && {'color':'#ff5a5a'}"></md-icon>
-             <md-icon class="card-button" md-svg-src="assets/svg/tags.svg" data-ng-style="shot.hasTags && {'color':'#2687e2'}"></md-icon>
-             <md-icon class="card-button" md-svg-src="assets/svg/star.svg" data-ng-style="shot.hasTags && {'color':'#efbd40'}"></md-icon>!-->
-             <md-button class="card-button" style="background:transparent">
-             <md-icon class="card-icon material-icons" data-ng-style="shot.hasGeo && {'color':'#ff5a5a'}">place</md-icon>
-            </md-button>
-            <md-button class="card-button" style="background:transparent">
-                <md-icon class="card-icon material-icons" data-ng-style="shot.hasStars && {'color':'#efbd40'}">star</md-icon>
-            </md-button>
-            <md-button class="card-button" style="background:transparent">
-                <md-icon class="card-icon material-icons" data-ng-style="shot.hasTags && {'color':'#2687e2'}">style</md-icon>
-            </md-button>
-            <md-button class="card-button" style="background:transparent">
-                <md-tooltip md-direction="top" class="tooltip">{{ shot.path }}</md-tooltip>
-                <md-icon class="card-icon material-icons" style="color: #dedede">info</md-icon>
-            </md-button>
-        </div>
-    </li>
-</ul>
-</md-content>
-<md-sidenav class="md-sidenav-right md-whiteframe-2dp navbar">
-    <div ng-controller="RightNavCtrl">
-        <md-list>
+   <div class="navbar-container" ng-controller="MainNavCtrl" layout="row">
+      <md-sidenav md-is-locked-open="true" class="md-sidenav-left md-whiteframe-2dp navbar">
+         <md-list>
             <md-list-item class="navbar-item">
-                <md-button class="navbar-button">
-                    <md-icon md-svg-src="assets/svg/filter-filled-tool-symbol.svg" class="navbar-svg"></md-icon>
-                </md-button>
+               <md-button class="navbar-button" ng-click="selectFolderToExplore()">
+                  <md-tooltip md-direction="right" class="tooltip">Ouvrir...</md-tooltip>
+                  <md-icon md-svg-src="assets/svg/open-folder.svg" class="navbar-svg"></md-icon>
+               </md-button>
             </md-list-item>
             <md-list-item class="navbar-item">
-                <md-button class="navbar-button">
-                    <md-icon md-svg-src="assets/svg/check.svg" class="navbar-svg"></md-icon>
-                </md-button>
+               <md-button class="navbar-button" ng-click="toggleFilterNav()">
+                  <md-tooltip md-direction="right" class="tooltip">Filtrer...</md-tooltip>
+                  <md-icon md-svg-src="assets/svg/filter-filled-tool-symbol.svg" class="navbar-svg"></md-icon>
+               </md-button>
             </md-list-item>
             <md-list-item class="navbar-item">
-                <md-button class="navbar-button">
-                    <md-icon md-svg-src="assets/svg/parameters.svg" class="navbar-svg"></md-icon>
-                </md-button>
+               <md-button class="navbar-button" ng-click="toggleSortNav()">
+                  <md-tooltip md-direction="right" class="tooltip">Trier...</md-tooltip>
+                  <md-icon class="zmdi zmdi-swap-vertical zmdi-hc-2-5x navbar-svg"></md-icon>
+               </md-button>
             </md-list-item>
-        </md-list>
-
-    </div>
-</md-sidenav>
+            <md-list-item class="navbar-item">
+               <md-button class="navbar-button">
+                  <md-tooltip md-direction="right" class="tooltip">Multi-sélection</md-tooltip>
+                  <md-icon md-svg-src="assets/svg/check.svg" class="navbar-svg" ng-click="toggleMultiSelect()"></md-icon>
+               </md-button>
+            </md-list-item>
+            <md-list-item class="navbar-item">
+               <md-button class="navbar-button" ng-click="showSettings()">
+                  <md-tooltip md-direction="right" class="tooltip">Paramètres</md-tooltip>
+                  <md-icon md-svg-src="assets/svg/parameters.svg" class="navbar-svg"></md-icon>
+               </md-button>
+            </md-list-item>
+         </md-list>
+      </md-sidenav>
+   </div>
+   <md-content id="gallery-wrap" ng-controller="GalleryCtrl" flex>
+      <md-sidenav md-is-locked-open="false" class="md-sidenav-left md-whiteframe-2dp navbar-secondary" md-component-id="filternav">
+         <md-list>
+            <md-list-item flex>
+               <md-button class="navbar-button" ng-click="selectFolderToExplore()">
+                  <md-icon class="zmdi zmdi-refresh zmdi-hc-2-5x navbar-svg"></md-icon>
+                  Réinitialiser
+               </md-button>
+            </md-list-item>
+            <md-list-item class="navbar-item">
+               <md-button class="navbar-button">
+                  <md-tooltip md-direction="right" class="tooltip">Par nom</md-tooltip>
+                  <md-icon md-svg-src="assets/svg/filter-filled-tool-symbol.svg" class="navbar-svg"></md-icon>
+               </md-button>
+            </md-list-item>
+         </md-list>
+      </md-sidenav>
+      <md-sidenav md-is-locked-open="false" class="md-sidenav-left md-whiteframe-2dp navbar navbar-secondary" md-component-id="sortnav">
+         <md-list>
+            <md-list-item class="navbar-item">
+               <md-button class="navbar-button" ng-click="showSettings()">
+                  <md-tooltip md-direction="right" class="tooltip">Paramètres</md-tooltip>
+                  <span class="zmdi-hc-stack zmdi-hc-lg">
+                     <md-icon class="zmdi zmdi-square-o zmdi-hc-stack-2x"></md-icon>
+                     <md-icon class="zmdi zmdi-share zmdi-hc-stack-1x"></md-icon>
+                  </span>
+               </md-button>
+            </md-list-item>
+            <md-list-item class="navbar-item">
+               <md-button class="navbar-button" ng-click="showSettings()">
+                  <md-tooltip md-direction="right" class="tooltip">Paramètres</md-tooltip>
+                  <md-icon md-svg-src="assets/svg/parameters.svg" class="navbar-svg"></md-icon>
+               </md-button>
+            </md-list-item>
+            <md-list-item class="navbar-item">
+               <md-button class="navbar-button" ng-click="showSettings()">
+                  <md-tooltip md-direction="right" class="tooltip">Paramètres</md-tooltip>
+                  <md-icon md-svg-src="assets/svg/parameters.svg" class="navbar-svg"></md-icon>
+               </md-button>
+            </md-list-item>
+         </md-list>
+      </md-sidenav>
+      <ul class="dynamic-grid" angular-grid="shots" ag-grid-width="300" ag-gutter-size="10" ag-id="gallery" ag-scroll-container="#gallery-wrap" ag-infinite-scroll="loadMore()">
+         <li data-ng-repeat="shot in shots" class="grid" ng-style="{ 'box-shadow': shot.isActive ? '0px 0px 4px 2px white' : '', transition: shot.isActive ? 'none' : '' }">
+            <img ng-src="{{ shot.path }}" class="grid-img" ng-click="activeImg(shot)"/>
+            <md-checkbox class="img-checkbox" ng-show="$parent.multiSelect" ng-model="shot.isSelected"></md-checkbox>
+            <div class="img-desc-wrap">
+               <div>
+                  <!--<md-icon class="card-button" md-svg-src="assets/svg/placeholder.svg" data-ng-style="shot.hasGeo && {'color':'#ff5a5a'}"></md-icon>
+                     <md-icon class="card-button" md-svg-src="assets/svg/tags.svg" data-ng-style="shot.hasTags && {'color':'#2687e2'}"></md-icon>
+                     <md-icon class="card-button" md-svg-src="assets/svg/star.svg" data-ng-style="shot.hasTags && {'color':'#efbd40'}"></md-icon>!-->
+                  <md-button class="card-button" style="background:transparent">
+                     <md-icon class="card-icon material-icons" data-ng-style="shot.hasGeo && {'color':'#ff5a5a'}">place</md-icon>
+                  </md-button>
+                  <md-button class="card-button" style="background:transparent">
+                     <md-icon class="card-icon material-icons" data-ng-style="shot.hasStars && {'color':'#efbd40'}">star</md-icon>
+                  </md-button>
+                  <md-button class="card-button" style="background:transparent">
+                     <md-icon class="card-icon material-icons" data-ng-style="shot.hasTags && {'color':'#2687e2'}">style</md-icon>
+                  </md-button>
+                  <md-button class="card-button" style="background:transparent">
+                     <md-tooltip md-direction="top" class="tooltip">{{ shot.path }}</md-tooltip>
+                     <md-icon class="card-icon material-icons" style="color: #dedede">info</md-icon>
+                  </md-button>
+               </div>
+               <!--<div>
+                  <md-chips ng-model="shot.tags" readonly="true">
+                      <md-chip-template class="gallery-chip" custom-chip>{{ $chip }}</md-chip-template>
+                  </md-chips>
+                  </div>!-->
+            </div>
+         </li>
+      </ul>
+   </md-content>
+   <md-sidenav class="md-sidenav-right md-whiteframe-2dp" md-is-locked-open="true">
+      <div ng-controller="RightNavCtrl" style="padding-top: 15px">
+         <div class="image-preview">
+             <img src="{{ imgDetailsToShow.path }}">
+         </div>
+         <div style="padding-top: 15px;">
+            <md-toolbar layout="row" class="left-sidenav-cat md-hue-2">
+               <div class="md-toolbar-tools">
+                  <span>Note</span>
+               </div>
+            </md-toolbar>
+            <md-toolbar layout="row" class="left-sidenav-cat md-hue-2">
+               <div class="md-toolbar-tools">
+                  <span>Tags</span>
+               </div>
+            </md-toolbar>
+            <md-toolbar layout="row" class="left-sidenav-cat md-hue-2">
+               <div class="md-toolbar-tools">
+                  <span>Geoposition</span>
+               </div>
+            </md-toolbar>
+         </div>
+         <md-button class="md-raised">
+         Sauver</md-button
+      </div>
+   </md-sidenav>
 </div>

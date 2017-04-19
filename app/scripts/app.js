@@ -1,6 +1,6 @@
 const remote = require('electron').remote;
 
-var angApp = angular.module('myApp', ['ngMaterial', 'angularGrid']);
+var angApp = angular.module('myApp', ['ngMaterial', 'angularGrid', 'angAccordion']);
 angApp.config(function($mdThemingProvider) {
     $mdThemingProvider.theme('default')
         .primaryPalette('blue')
@@ -26,4 +26,15 @@ angApp.config(function($mdIconProvider) {
       .icon("world", "assets/svg/placeholder.svg", 64)
       .icon("tags", "assets/svg/tags.svg", 64)
       .icon("star", "assets/svg/star.svg", 64);
+});
+angApp.directive('customChip', function(){
+          return {
+            restrict: 'EA',
+            link: function(scope, elem, attrs) {
+                var chipTemplateClass = attrs.class;
+                elem.removeClass(chipTemplateClass);
+                var mdChip = elem.parent().parent();
+                mdChip.addClass(chipTemplateClass);
+            }
+        }
 });

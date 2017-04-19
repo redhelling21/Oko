@@ -14,7 +14,10 @@ controller('GalleryCtrl', ['$scope', 'angularGridInstance', function($scope, ang
             image = {
                 path: value.path,
                 id: i,
-                isSelected: false
+                isSelected: false,
+                isActive: false,
+                tags: [],
+                showTags: false
             }
             image.hasMetas = (value.metadata !== null);
             if(image.hasMetas){
@@ -66,13 +69,13 @@ controller('GalleryCtrl', ['$scope', 'angularGridInstance', function($scope, ang
         }
     };
 
-    $scope.selectImg = function(shot){
-        var idx = $scope.selectedImgs.indexOf(shot.id);
-        if (idx > -1) {
-          list.splice(idx, 1);
-        }
-        else {
-          list.push(shot.id);
+    $scope.activeImg = function(shot){
+        if($scope.$parent.multiSelect !== true){
+            $scope.shots.forEach(function(value){
+                value.isActive = false;
+            });
+            shot.isActive = true;
+            $scope.imgDetailsToShow = shot;
         }
     }
 }

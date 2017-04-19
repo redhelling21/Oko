@@ -1,6 +1,6 @@
 const remote = require('electron').remote;
 
-var angApp = angular.module('myApp', ['ngMaterial', 'angularGrid', 'angAccordion']);
+var angApp = angular.module('myApp', ['ngMaterial', 'angularGrid']);
 angApp.config(function($mdThemingProvider) {
     $mdThemingProvider.theme('default')
         .primaryPalette('blue')

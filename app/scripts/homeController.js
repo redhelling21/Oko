@@ -3,6 +3,7 @@ controller('HomeCtrl', function($scope){
 	var window = remote.getCurrentWindow();
     $scope.title = "Oko";
     $scope.multiSelect = false;
+    $scope.imgDetailsToShow = {path: "assets/png/Empty_set_blue.png"};
     $scope.closeW = function(){
     	window.close();
     }

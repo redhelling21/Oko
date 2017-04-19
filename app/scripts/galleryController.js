@@ -37,20 +37,14 @@ controller('GalleryCtrl', ['$scope', 'angularGridInstance', function($scope, ang
             i++;
         });
         $scope.tiles = temp;
-        $scope.clearShots();
+        $scope.shots = [];
         $scope.fullyLoaded = false;
+        $scope.page = 0;
         $scope.loadMore();
     });
 
     $scope.refresh = function() {
         angularGridInstance.gallery.refresh();
-    }
-
-    $scope.clearShots = function() {
-        for (var j = 0; j < $scope.shots.length; j++) {
-            $scope.shots.splice(j, 1);
-            angularGridInstance.gallery.refresh();
-        }
     }
 
     $scope.loadMore = function(){
@@ -75,7 +69,7 @@ controller('GalleryCtrl', ['$scope', 'angularGridInstance', function($scope, ang
                 value.isActive = false;
             });
             shot.isActive = true;
-            $scope.imgDetailsToShow = shot;
+            $scope.$parent.imgDetailsToShow = shot;
         }
     }
 }

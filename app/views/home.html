@@ -123,7 +123,7 @@
    <md-sidenav class="md-sidenav-right md-whiteframe-2dp" md-is-locked-open="true">
       <div ng-controller="RightNavCtrl" style="padding-top: 15px">
          <div class="image-preview">
-             <img src="{{ imgDetailsToShow.path }}">
+             <img src="{{ $parent.imgDetailsToShow.path }}">
          </div>
          <div style="padding-top: 15px;">
             <md-toolbar layout="row" class="left-sidenav-cat md-hue-2">
@@ -136,13 +136,21 @@
                   <span>Tags</span>
                </div>
             </md-toolbar>
+            <div class="detail-tags">
+                <md-chips ng-model="$parent.imgDetailsToShow.tags" readonly="chips_readonly" md-removable="chips_removable" placeholder="Entrer un tag...">
+                    <md-chip-template>
+                      <strong>{{$chip}}</strong>
+                    </md-chip-template>
+              </md-chips>
+            </div>
+
             <md-toolbar layout="row" class="left-sidenav-cat md-hue-2">
                <div class="md-toolbar-tools">
                   <span>Geoposition</span>
                </div>
             </md-toolbar>
          </div>
-         <md-button class="md-raised">
+         <md-button class="md-raised" style="position: absolute; bottom: 0; right: 0;">
          Sauver</md-button
       </div>
    </md-sidenav>

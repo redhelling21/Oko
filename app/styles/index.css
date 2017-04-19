@@ -125,24 +125,20 @@
     font-size: 14px !important;
 }
 
-.gallery-chip {
-    background-color: #2196f3 !important;
-    color: white;
-    margin: 0px !important;
-    margin-right: 4px !important;
-    padding-right: 5px !important;
-    line-height: 20px !important;
-    height: 20px !important;
-    padding-left: 5px !important;
-    font-size: 12px;
-}
-
 .image-preview {
     width: 100%;
     height: 250px;
     max-height: 350px;
     background-color: rgba(0, 0, 0, 0.1);
-    box-shadow: inset 0px 0px 6px 0px rgba(0,0,0,.2)
+    box-shadow: inset 0px 0px 6px 0px rgba(0,0,0,.2);
+    text-align: center;
+}
+
+.image-preview img {
+	height: auto;
+    width: auto;
+    max-height: 100%;
+    max-width: 100%;
 }
 
 md-tooltip .md-content {
@@ -162,6 +158,21 @@ md-tooltip .md-content {
     font-size: 15px;
     padding: 8px;
 }
+
+.detail-tags md-chip {
+	background-color: #2196f3 !important;
+    color: white;
+    margin-right: 4px !important;
+    line-height: 25px !important;
+    height: 25px !important;
+    padding-left: 5px !important;
+    font-size: 14px;
+}
+
+.md-chips md-chip .md-chip-remove-container {
+    top: -3px;
+}
+
 
 /* Scrollbar style */
 

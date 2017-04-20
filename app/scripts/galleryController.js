@@ -43,6 +43,15 @@ controller('GalleryCtrl', ['$scope', 'angularGridInstance', function($scope, ang
         $scope.loadMore();
     });
 
+    ipcRenderer.on('write-datas-reply', (event, arg) => {
+        $mdToast.show(
+            $mdToast.simple()
+                .textContent('Datas saved !')
+                .position("top right")
+                .hideDelay(1500)
+        );
+    });
+
     $scope.refresh = function() {
         angularGridInstance.gallery.refresh();
     }

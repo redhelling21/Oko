@@ -1,5 +1,5 @@
 angApp.
-controller('HomeCtrl', function($scope){
+controller('HomeCtrl', function($scope, $mdToast){
 	var window = remote.getCurrentWindow();
 	const {ipcRenderer} = require('electron');
     $scope.title = "Oko";
@@ -18,13 +18,4 @@ controller('HomeCtrl', function($scope){
     $scope.reduceW = function(){
     	window.minimize();
     }
-
-    ipcRenderer.on('write-datas-reply', (event, arg) => {
-    	$mdToast.show(
-	    	$mdToast.simple()
-		        .textContent('Datas saved !')
-		        .position("top right")
-		        .hideDelay(1500)
-		);
-    });
 });

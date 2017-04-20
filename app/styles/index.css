@@ -147,14 +147,15 @@ md-tooltip .md-content {
     padding : 5px;
 }
 
-.left-sidenav-cat{
-    height: 30px;
+.right-sidenav-cat{
+    height: 35px;
     min-height: 0px;
     box-shadow: 0px 2px 6px 1px rgba(0,0,0,.2);
+    background-color: #4d4d4d;
 }
 
-.left-sidenav-cat .md-toolbar-tools{
-    height: 30px;
+.right-sidenav-cat .md-toolbar-tools{
+    height: 35px;
     font-size: 15px;
     padding: 8px;
 }

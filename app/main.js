@@ -79,8 +79,6 @@ ipcMain.on('scan-folders', (event, arg) => {
 })
 
 var writeDataList = async function(shots, event){
-    console.log("In main.js");
-    console.log(shots);
     var promises = await writeMeta(shots);
     event.sender.send('write-datas-reply', promises);
 }

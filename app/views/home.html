@@ -97,15 +97,9 @@
                   <!--<md-icon class="card-button" md-svg-src="assets/svg/placeholder.svg" data-ng-style="shot.hasGeo && {'color':'#ff5a5a'}"></md-icon>
                      <md-icon class="card-button" md-svg-src="assets/svg/tags.svg" data-ng-style="shot.hasTags && {'color':'#2687e2'}"></md-icon>
                      <md-icon class="card-button" md-svg-src="assets/svg/star.svg" data-ng-style="shot.hasTags && {'color':'#efbd40'}"></md-icon>!-->
-                  <md-button class="card-button" style="background:transparent">
                      <md-icon class="card-icon material-icons" data-ng-style="shot.hasGeo && {'color':'#ff5a5a'}">place</md-icon>
-                  </md-button>
-                  <md-button class="card-button" style="background:transparent">
                      <md-icon class="card-icon material-icons" data-ng-style="shot.hasStars && {'color':'#efbd40'}">star</md-icon>
-                  </md-button>
-                  <md-button class="card-button" style="background:transparent">
                      <md-icon class="card-icon material-icons" data-ng-style="shot.hasTags && {'color':'#2687e2'}">style</md-icon>
-                  </md-button>
                   <md-button class="card-button" style="background:transparent">
                      <md-tooltip md-direction="top" class="tooltip">{{ shot.path }}</md-tooltip>
                      <md-icon class="card-icon material-icons" style="color: #dedede">info</md-icon>
@@ -122,18 +116,27 @@
    </md-content>
    <md-sidenav class="md-sidenav-right md-whiteframe-2dp" md-is-locked-open="true">
       <div ng-controller="RightNavCtrl" style="padding-top: 15px">
-         <div class="image-preview">
-             <img src="{{ $parent.imgDetailsToShow.path }}">
+         <div class="image-preview" layout="row">
+             <md-icon ng-hide="$parent.imgDetailsToShow != null" class="card-icon material-icons" style="color: #dedede; font-size: 96px; height: 96px; width: 96px">photo</md-icon>
+             <img ng-show="$parent.imgDetailsToShow != null" src="{{ $parent.imgDetailsToShow.path }}">
          </div>
          <div style="padding-top: 15px;">
             <md-toolbar layout="row" class="right-sidenav-cat">
                <div class="md-toolbar-tools">
-                  <span>Note</span>
+                  <h3>Note</h3>
+                  <span flex></span>
+                  <md-button class="md-icon-button" style="background:transparent">
+                     <md-icon class="material-icons">mode_edit</md-icon>
+                  </md-button>
                </div>
             </md-toolbar>
-            <md-toolbar layout="row" class="right-sidenav-cat">
+            <md-toolbar class="right-sidenav-cat">
                <div class="md-toolbar-tools">
-                  <span>Tags</span>
+                  <h3>Tags</h3>
+                  <span flex></span>
+                  <md-button class="md-icon-button" style="background:transparent" ng-click="toggleEdit()">
+                     <md-icon class="material-icons">mode_edit</md-icon>
+                  </md-button>
                </div>
             </md-toolbar>
             <div class="detail-tags">
@@ -146,7 +149,11 @@
 
             <md-toolbar layout="row" class="right-sidenav-cat">
                <div class="md-toolbar-tools">
-                  <span>Geoposition</span>
+                  <h3>Position</h3>
+                  <span flex></span>
+                  <md-button class="md-icon-button" style="background:transparent">
+                     <md-icon class="material-icons">mode_edit</md-icon>
+                  </md-button>
                </div>
             </md-toolbar>
          </div>

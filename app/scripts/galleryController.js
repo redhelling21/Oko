@@ -1,5 +1,5 @@
 angApp.
-controller('GalleryCtrl', ['$scope', 'angularGridInstance', function($scope, angularGridInstance) {
+controller('GalleryCtrl', ['$scope', 'angularGridInstance', '$mdToast', function($scope, $mdToast, angularGridInstance) {
     const {ipcRenderer} = require('electron');
 
     $scope.tiles = [];

@@ -4,7 +4,7 @@ controller('HomeCtrl', function($scope, $mdToast){
 	const {ipcRenderer} = require('electron');
     $scope.title = "Oko";
     $scope.multiSelect = false;
-    $scope.imgDetailsToShow = {path: "assets/png/Empty_set_blue.png"};
+    $scope.imgDetailsToShow = null;
     $scope.closeW = function(){
     	window.close();
     }

@@ -120,7 +120,7 @@
              <md-icon ng-hide="$parent.imgDetailsToShow != null" class="card-icon material-icons" style="color: #dedede; font-size: 96px; height: 96px; width: 96px">photo</md-icon>
              <img ng-show="$parent.imgDetailsToShow != null" src="{{ $parent.imgDetailsToShow.path }}">
          </div>
-         <div style="padding-top: 15px;">
+         <div>
             <md-toolbar layout="row" class="right-sidenav-cat">
                <div class="md-toolbar-tools">
                   <h3>Note</h3>
@@ -140,11 +140,26 @@
                </div>
             </md-toolbar>
             <div class="detail-tags">
-                <md-chips ng-model="$parent.imgDetailsToShow.tags" readonly="chips_readonly" md-removable="chips_removable" placeholder="Entrer un tag...">
+                <md-chips ng-model="$parent.imgDetailsToShow.tags" readonly="!editTags" md-removable="editTags" placeholder="Entrer un tag...">
                     <md-chip-template>
                       <strong>{{$chip}}</strong>
                     </md-chip-template>
               </md-chips>
+              <div ng-show="editTags">
+                  <md-divider style="margin-bottom: 8px;"></md-divider>
+                  <span class="md-body-1" style="margin-left: 8px;">Derniers tags</span>
+                  <div class="tag-buttons">
+                      <md-button ng-repeat="tag in $parent.getSetAsArr($parent.existingTags)" style="background:transparent" ng-click="addTag(tag)">
+                             {{ tag }}
+                      </md-button>
+                  </div>
+                  <span class="md-body-1" style="margin-left: 8px;">Tous les tags</span>
+                  <div class="tag-buttons">
+                      <md-button ng-repeat="tag in $parent.getSetAsArr($parent.existingTags)" style="background:transparent" ng-click="addTag(tag)">
+                             {{ tag }}
+                      </md-button>
+                  </div>
+              </div>
             </div>
 
             <md-toolbar layout="row" class="right-sidenav-cat">

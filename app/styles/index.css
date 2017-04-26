@@ -152,6 +152,7 @@ md-tooltip .md-content {
     min-height: 0px;
     box-shadow: 0px 2px 6px 1px rgba(0,0,0,.2);
     background-color: #4d4d4d;
+    margin-top: 15px;
 }
 
 .right-sidenav-cat .md-toolbar-tools{
@@ -161,20 +162,37 @@ md-tooltip .md-content {
 }
 
 .detail-tags md-chip {
-	background-color: #2196f3 !important;
-    color: white;
     margin-right: 4px !important;
     line-height: 25px !important;
     height: 25px !important;
     padding-left: 5px !important;
     font-size: 14px;
+    border-radius: 3px;
+}
+
+md-chips-wrap {
+	box-shadow: none !important;
+	padding-bottom: 0px !important;
 }
 
 .md-chips md-chip .md-chip-remove-container {
     top: -3px;
 }
 
+.tag-buttons {
+	margin: 5px;
+}
 
+.tag-buttons button {
+	border: 1px solid grey;
+    border-radius: 3px;
+    min-height: 10px;
+    height: 25px;
+    line-height: 21px;
+    min-width: 20px;
+    width: auto;
+    margin: 3px;
+}
 /* Scrollbar style */
 
 ::-webkit-scrollbar {

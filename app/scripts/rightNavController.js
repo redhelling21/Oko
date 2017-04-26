@@ -2,19 +2,21 @@ angApp.
 controller('RightNavCtrl', function($scope){
 	const {ipcRenderer} = require('electron');
 	$scope.title = "Oko";
-	$scope.chips_readonly = true;
-	$scope.chips_removable = false;
+	$scope.editTags = false;
 
 	$scope.saveDetails = function(){
 		var arg = [];
-		$scope.chips_readonly = true;
-		$scope.chips_removable = false;
+		$scope.editTags = false;
 		arg.push($scope.$parent.imgDetailsToShow);
 		ipcRenderer.send('save-datas', arg);
 	}
 
 	$scope.toggleEdit = function(){
-		$scope.chips_readonly = false;
-		$scope.chips_removable = true;
+		$scope.editTags = true;
+	}
+	$scope.addTag = function(tag){
+		if(!$scope.$parent.imgDetailsToShow.tags.includes(tag)){
+			$scope.$parent.imgDetailsToShow.tags.push(tag);
+		}
 	}
 });

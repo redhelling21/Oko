@@ -10,6 +10,7 @@ controller('GalleryCtrl', ['$scope', 'angularGridInstance', '$mdToast', function
 
     ipcRenderer.on('scan-folders-reply', (event, arg) => {
         var images = arg, temp = [], i = 0, hasTags, hasStars, hasGeo, hasMetas, image;
+        $scope.$parent.existingTags.clear();
         images.forEach(function(value) {
             image = {
                 path: value.path,
@@ -24,6 +25,9 @@ controller('GalleryCtrl', ['$scope', 'angularGridInstance', '$mdToast', function
                 image.hasTags = (value.metadata.hasOwnProperty('Subject'));
                 if(image.hasTags){
                     image.tags = image.tags.concat(value.metadata.Subject);
+                    image.tags.forEach(function(value) {
+                        $scope.$parent.existingTags.add(value);
+                    })
                 }
                 image.hasStars = false;
                 image.hasGeo = false;
@@ -32,10 +36,10 @@ controller('GalleryCtrl', ['$scope', 'angularGridInstance', '$mdToast', function
                 image.hasStars = false;
                 image.hasGeo = false;
             }
-            console.log(image);
             temp.push(image);
             i++;
         });
+        console.log($scope.$parent.existingTags);
         $scope.tiles = temp;
         $scope.shots = [];
         $scope.fullyLoaded = false;

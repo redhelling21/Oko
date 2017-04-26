@@ -5,6 +5,8 @@ controller('HomeCtrl', function($scope, $mdToast){
     $scope.title = "Oko";
     $scope.multiSelect = false;
     $scope.imgDetailsToShow = null;
+    $scope.existingTags = new Set();
+    $scope.lastTags = [];
     $scope.closeW = function(){
     	window.close();
     }
@@ -18,4 +20,12 @@ controller('HomeCtrl', function($scope, $mdToast){
     $scope.reduceW = function(){
     	window.minimize();
     }
+
+    $scope.getSetAsArr = function (set) {
+	    var arr = [];
+	    set.forEach(function (value) {
+	        arr.push(value);
+	    });
+    return arr;
+};
 });

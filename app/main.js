@@ -24,12 +24,16 @@ function createMainWindow() {
     var win = new electron.BrowserWindow({
         width: 1400,
         height: 1000,
-        frame: true
+        frame: true,
+        show: false,
+        backgroundColor: '#312450'
     });
 
     win.loadURL(`file://${__dirname}/index.html`);
     win.on('closed', onClosed);
-
+    win.once('ready-to-show', () => {
+     mainWindow.show()
+    })
     return win;
 }
 
@@ -50,6 +54,7 @@ app.on('ready', () => {
     ep.open();
     mainWindow = createMainWindow();
 });
+
 
 exports.selectDirectory = function() {
     dialog.showOpenDialog(mainWindow, {

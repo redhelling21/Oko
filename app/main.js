@@ -123,7 +123,7 @@ var readMeta = function(pathList){
 var writeMeta = function(shots){
     var promises = [];
     shots.forEach(function(value){
-        promises.push(ep.writeMetadata(value.path, {Subject: value.tags}, ['overwrite_original']));
+        promises.push(ep.writeMetadata(value.path, {Subject: value.tags}));
     });
     return Promise.all(promises).catch(function(err) {
                 console.log('A promise failed to resolve', err);

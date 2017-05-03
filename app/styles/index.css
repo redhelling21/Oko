@@ -56,6 +56,18 @@
   left: 10px;
 }
 
+.changed-dot {
+    height: 9px;
+    display: inline-block;
+    width: 9px;
+    background-color: orange;
+    position: absolute;
+    left: 10px;
+    bottom: 9px;
+    border-radius: 50px;
+    box-shadow: 0px 0px 5px 1px orange;
+}
+
 .grid {
     list-style: none;
     box-sizing: border-box;

@@ -5,6 +5,7 @@ controller('HomeCtrl', function($scope, $mdToast){
     $scope.title = "Oko";
     $scope.multiSelect = false;
     $scope.imgDetailsToShow = null;
+    $scope.imgMultiDetailsToShow = [];
     $scope.existingTags = new Set();
     $scope.lastTags = [];
     $scope.closeW = function(){

@@ -15,7 +15,7 @@ controller('GalleryCtrl', ['$scope', 'angularGridInstance', '$mdToast', function
             image = {
                 path: value.path,
                 id: i,
-                isSelected: false,
+                hasChanged: false,
                 isActive: false,
                 tags: [],
                 showTags: false
@@ -83,6 +83,12 @@ controller('GalleryCtrl', ['$scope', 'angularGridInstance', '$mdToast', function
             });
             shot.isActive = true;
             $scope.$parent.imgDetailsToShow = shot;
+        }else{
+            if(shot.isSelected){
+                shot.isActive = false;
+            }else{
+                shot.isActive = true;
+            }
         }
     }
 }

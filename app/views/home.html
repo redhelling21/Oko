@@ -91,12 +91,11 @@
       <ul class="dynamic-grid" angular-grid="shots" ag-grid-width="300" ag-gutter-size="10" ag-id="gallery" ag-scroll-container="#gallery-wrap" ag-infinite-scroll="loadMore()">
          <li data-ng-repeat="shot in shots" class="grid" ng-style="{ 'box-shadow': shot.isActive ? '0px 0px 4px 2px white' : '', transition: shot.isActive ? 'none' : '' }">
             <img ng-src="{{ shot.path }}" class="grid-img" ng-click="activeImg(shot)"/>
-            <md-checkbox class="img-checkbox" ng-show="$parent.multiSelect" ng-model="shot.isSelected"></md-checkbox>
+            <md-checkbox class="img-checkbox" ng-show="$parent.multiSelect" ng-model="shot.isActive"></md-checkbox>
+
             <div class="img-desc-wrap">
                <div>
-                  <!--<md-icon class="card-button" md-svg-src="assets/svg/placeholder.svg" data-ng-style="shot.hasGeo && {'color':'#ff5a5a'}"></md-icon>
-                     <md-icon class="card-button" md-svg-src="assets/svg/tags.svg" data-ng-style="shot.hasTags && {'color':'#2687e2'}"></md-icon>
-                     <md-icon class="card-button" md-svg-src="assets/svg/star.svg" data-ng-style="shot.hasTags && {'color':'#efbd40'}"></md-icon>!-->
+                     <div ng-show="shot.hasChanged" class="changed-dot"></div>
                      <md-icon class="card-icon material-icons" data-ng-style="shot.hasGeo && {'color':'#ff5a5a'}">place</md-icon>
                      <md-icon class="card-icon material-icons" data-ng-style="shot.hasStars && {'color':'#efbd40'}">star</md-icon>
                      <md-icon class="card-icon material-icons" data-ng-style="shot.hasTags && {'color':'#2687e2'}">style</md-icon>
@@ -105,11 +104,6 @@
                      <md-icon class="card-icon material-icons" style="color: #dedede">info</md-icon>
                   </md-button>
                </div>
-               <!--<div>
-                  <md-chips ng-model="shot.tags" readonly="true">
-                      <md-chip-template class="gallery-chip" custom-chip>{{ $chip }}</md-chip-template>
-                  </md-chips>
-                  </div>!-->
             </div>
          </li>
       </ul>
@@ -171,9 +165,10 @@
                   </md-button>
                </div>
             </md-toolbar>
-         </div>
+
          <md-button ng-click="saveDetails()" class="md-raised" style="position: absolute; bottom: 0; right: 0;">
          Sauver</md-button>
+         </div>
       </div>
    </md-sidenav>
 </div>

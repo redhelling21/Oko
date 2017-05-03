@@ -6,6 +6,7 @@ controller('RightNavCtrl', function($scope){
 
 	$scope.saveDetails = function(){
 		var arg = [];
+		console.log($scope.$parent.imgDetailsToShow);
 		$scope.editTags = false;
 		arg.push($scope.$parent.imgDetailsToShow);
 		ipcRenderer.send('save-datas', arg);
@@ -17,6 +18,7 @@ controller('RightNavCtrl', function($scope){
 	$scope.addTag = function(tag){
 		if(!$scope.$parent.imgDetailsToShow.tags.includes(tag)){
 			$scope.$parent.imgDetailsToShow.tags.push(tag);
+			$scope.$parent.imgDetailsToShow.hasChanged = true;
 		}
 	}
 });

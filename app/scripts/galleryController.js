@@ -77,42 +77,32 @@ controller('GalleryCtrl', ['$scope', 'angularGridInstance', '$mdToast', '$timeou
     };
 
     $scope.activeImg = function(shot){
-        if($scope.clicked){
-            $scope.cancelClick = true;
-            return;
+        if($scope.alreadyClicked){
+            console.log("Douc");
+            $scope.alreadyClicked = false;
+        }else{
+            $scope.alreadClicked = true;
+            $timeout(function(){
+                $scope.alreadyClicked = false;
+            }, 100)
         }
-        $scope.clicked = true;
-        $timeout(function(){
-            if($scope.cancelClick){
-                $scope.cancelClick = false;
-                $scope.clicked = false;
-                return;
-            }
-
-            if($scope.$parent.multiSelect !== true){
-                $scope.shots.forEach(function(value){
-                    value.isActive = false;
-                });
-                shot.isActive = true;
-                $scope.$parent.imgDetailsToShow = shot;
+        if($scope.$parent.multiSelect !== true){
+            $scope.shots.forEach(function(value){
+                value.isActive = false;
+            });
+            shot.isActive = true;
+            $scope.$parent.imgDetailsToShow = shot;
+        }else{
+            if(shot.isSelected){
+                shot.isActive = false;
             }else{
-                if(shot.isSelected){
-                    shot.isActive = false;
-                }else{
-                    shot.isActive = true;
-                }
+                shot.isActive = true;
             }
-
-            //clean up
-            $scope.cancelClick = false;
-            $scope.clicked = false;
-        }, 300);
+        }
     };
 
     $scope.displayImg = function(shot){
-        $timeout(function(){
-            console.log("DOUBLE CLICK");
-        })
+        console.log("DOUBLE CLICK");
     }
 }
 ]);

@@ -77,15 +77,6 @@ controller('GalleryCtrl', ['$scope', 'angularGridInstance', '$mdToast', '$timeou
     };
 
     $scope.activeImg = function(shot){
-        if($scope.alreadyClicked){
-            console.log("Douc");
-            $scope.alreadyClicked = false;
-        }else{
-            $scope.alreadClicked = true;
-            $timeout(function(){
-                $scope.alreadyClicked = false;
-            }, 100)
-        }
         if($scope.$parent.multiSelect !== true){
             $scope.shots.forEach(function(value){
                 value.isActive = false;
@@ -103,6 +94,6 @@ controller('GalleryCtrl', ['$scope', 'angularGridInstance', '$mdToast', '$timeou
 
     $scope.displayImg = function(shot){
         console.log("DOUBLE CLICK");
-    }
+    };
 }
 ]);

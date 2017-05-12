@@ -10,6 +10,11 @@
    </md-button>
 </md-toolbar>
 <div flex layout="row">
+
+   <!--  ###################################
+         MAIN SIDEBAR
+         ####################################!-->
+
    <div class="navbar-container" ng-controller="MainNavCtrl" layout="row">
       <md-sidenav md-is-locked-open="true" class="md-sidenav-left md-whiteframe-2dp navbar">
          <md-list>
@@ -46,6 +51,11 @@
          </md-list>
       </md-sidenav>
    </div>
+
+   <!--  ###################################
+         GALLERY
+         ####################################!-->
+
    <md-content id="gallery-wrap" ng-controller="GalleryCtrl" flex>
       <md-sidenav md-is-locked-open="false" class="md-sidenav-left md-whiteframe-2dp navbar-secondary" md-component-id="filternav">
          <md-list>
@@ -90,7 +100,7 @@
       </md-sidenav>
       <ul class="dynamic-grid" angular-grid="shots" ag-grid-width="300" ag-gutter-size="10" ag-id="gallery" ag-scroll-container="#gallery-wrap" ag-infinite-scroll="loadMore()">
          <li data-ng-repeat="shot in shots" class="grid" ng-style="{ 'box-shadow': shot.isActive ? '0px 0px 4px 2px white' : '', transition: shot.isActive ? 'none' : '' }">
-            <img ng-src="{{ shot.path }}" class="grid-img" ng-click="activeImg(shot)"/>
+            <img ng-src="{{ shot.path }}" class="grid-img" ng-click="activeImg(shot)" ng-dblclick="displayImg(shot)"/>
             <md-checkbox class="img-checkbox" ng-show="$parent.multiSelect" ng-model="shot.isActive"></md-checkbox>
 
             <div class="img-desc-wrap">
@@ -108,6 +118,11 @@
          </li>
       </ul>
    </md-content>
+
+   <!--  ###################################
+         DISPLAY SIDEBAR
+         ####################################!-->
+
    <md-sidenav class="md-sidenav-right md-whiteframe-2dp" md-is-locked-open="true">
       <div ng-controller="RightNavCtrl" style="padding-top: 15px">
          <div class="image-preview" layout="row">

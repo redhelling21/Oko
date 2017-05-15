@@ -108,6 +108,7 @@ controller('GalleryCtrl', ['$scope', 'angularGridInstance', '$mdToast', '$timeou
         }
         lightGallery(el, {
             dynamic: true,
+            download : false,
             index: indexG,
             dynamicEl: $scope.galleryList
         });

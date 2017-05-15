@@ -3,15 +3,13 @@ controller('GalleryCtrl', ['$scope', 'angularGridInstance', '$mdToast', '$timeou
     const ipcRenderer = require('electron').ipcRenderer;
 
     var tiles = [];
-    var tilesGal = [];
     $scope.shots = [];
-    $scope.galleryList = [];
     $scope.selectedImgs = [];
     $scope.page = 0;
     var fullyLoaded = false;
 
     ipcRenderer.on('scan-folders-reply', function(event, arg){
-        var images = arg, temp = [], tempGal = [], i = 0, hasTags, hasStars, hasGeo, hasMetas, image;
+        var images = arg, temp = [], i = 0, hasTags, hasStars, hasGeo, hasMetas, image;
         $scope.$parent.existingTags.clear();
         images.forEach(function(value) {
             image = {
@@ -39,14 +37,11 @@ controller('GalleryCtrl', ['$scope', 'angularGridInstance', '$mdToast', '$timeou
                 image.hasGeo = false;
             }
             temp.push(image);
-            tempGal.push({'src': image.path});
             i++;
         });
         console.log($scope.$parent.existingTags);
         tiles = temp;
-        tilesGal = tempGal;
         $scope.shots = [];
-        $scope.galleryList = [];
         $scope.fullyLoaded = false;
         $scope.page = 0;
         $scope.loadMore();
@@ -69,12 +64,10 @@ controller('GalleryCtrl', ['$scope', 'angularGridInstance', '$mdToast', '$timeou
         if(!$scope.fullyLoaded){
             if(($scope.page + 1)*50 >= tiles.length ){
                 $scope.shots = tiles;
-                $scope.galleryList = tilesGal;
                 $scope.fullyLoaded = true;
             }else{
                 for(var i = $scope.page * 50; i < ($scope.page + 1)*50; i++){
                     $scope.shots.push(tiles[i]);
-                    $scope.galleryList.push(tilesGal[i]);
                 }
             }
             $scope.page++;
@@ -100,8 +93,7 @@ controller('GalleryCtrl', ['$scope', 'angularGridInstance', '$mdToast', '$timeou
     };
 
     $scope.displayImg = function(shot){
-        console.log("DOUBLE CLICK");
-        var indexG = tiles.indexOf(shot);
+        var indexG = $scope.shots.indexOf(shot);
         var el = document.getElementById('ul-gallery');
         if(el.attributes['lg-uid'] != null && $window.lgData[el.attributes['lg-uid'].value] != null){
             $window.lgData[el.attributes['lg-uid'].value].destroy(true);
@@ -110,7 +102,7 @@ controller('GalleryCtrl', ['$scope', 'angularGridInstance', '$mdToast', '$timeou
             dynamic: true,
             download : false,
             index: indexG,
-            dynamicEl: $scope.galleryList
+            dynamicEl: $scope.shots.map(function(shot) {return {'src': shot.path};})
         });
         //console.log($window.lgData[el.attributes['lg-uid'].value]);
     };

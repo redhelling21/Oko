@@ -1,15 +1,17 @@
 angApp.
-controller('GalleryCtrl', ['$scope', 'angularGridInstance', '$mdToast', '$timeout', function($scope, $mdToast, angularGridInstance, $timeout) {
+controller('GalleryCtrl', ['$scope', 'angularGridInstance', '$mdToast', '$timeout', '$window', function($scope, $mdToast, angularGridInstance, $timeout, $window) {
     const ipcRenderer = require('electron').ipcRenderer;
 
-    $scope.tiles = [];
+    var tiles = [];
+    var tilesGal = [];
     $scope.shots = [];
+    $scope.galleryList = [];
     $scope.selectedImgs = [];
     $scope.page = 0;
-    $scope.fullyLoaded = false;
+    var fullyLoaded = false;
 
     ipcRenderer.on('scan-folders-reply', function(event, arg){
-        var images = arg, temp = [], i = 0, hasTags, hasStars, hasGeo, hasMetas, image;
+        var images = arg, temp = [], tempGal = [], i = 0, hasTags, hasStars, hasGeo, hasMetas, image;
         $scope.$parent.existingTags.clear();
         images.forEach(function(value) {
             image = {
@@ -37,11 +39,14 @@ controller('GalleryCtrl', ['$scope', 'angularGridInstance', '$mdToast', '$timeou
                 image.hasGeo = false;
             }
             temp.push(image);
+            tempGal.push({'src': image.path});
             i++;
         });
         console.log($scope.$parent.existingTags);
-        $scope.tiles = temp;
+        tiles = temp;
+        tilesGal = tempGal;
         $scope.shots = [];
+        $scope.galleryList = [];
         $scope.fullyLoaded = false;
         $scope.page = 0;
         $scope.loadMore();
@@ -50,9 +55,9 @@ controller('GalleryCtrl', ['$scope', 'angularGridInstance', '$mdToast', '$timeou
     ipcRenderer.on('write-datas-reply', function(event, arg){
         $mdToast.show(
             $mdToast.simple()
-                .textContent('Datas saved !')
-                .position("top right")
-                .hideDelay(1500)
+            .textContent('Datas saved !')
+            .position("top right")
+            .hideDelay(1500)
         );
     });
 
@@ -62,12 +67,14 @@ controller('GalleryCtrl', ['$scope', 'angularGridInstance', '$mdToast', '$timeou
 
     $scope.loadMore = function(){
         if(!$scope.fullyLoaded){
-            if(($scope.page + 1)*50 >= $scope.tiles.length ){
-                $scope.shots = $scope.tiles;
+            if(($scope.page + 1)*50 >= tiles.length ){
+                $scope.shots = tiles;
+                $scope.galleryList = tilesGal;
                 $scope.fullyLoaded = true;
             }else{
                 for(var i = $scope.page * 50; i < ($scope.page + 1)*50; i++){
-                    $scope.shots.push($scope.tiles[i]);
+                    $scope.shots.push(tiles[i]);
+                    $scope.galleryList.push(tilesGal[i]);
                 }
             }
             $scope.page++;
@@ -94,6 +101,17 @@ controller('GalleryCtrl', ['$scope', 'angularGridInstance', '$mdToast', '$timeou
 
     $scope.displayImg = function(shot){
         console.log("DOUBLE CLICK");
+        var indexG = tiles.indexOf(shot);
+        var el = document.getElementById('ul-gallery');
+        if(el.attributes['lg-uid'] != null && $window.lgData[el.attributes['lg-uid'].value] != null){
+            $window.lgData[el.attributes['lg-uid'].value].destroy(true);
+        }
+        lightGallery(el, {
+            dynamic: true,
+            index: indexG,
+            dynamicEl: $scope.galleryList
+        });
+        //console.log($window.lgData[el.attributes['lg-uid'].value]);
     };
 }
 ]);

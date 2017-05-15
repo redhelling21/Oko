@@ -12,8 +12,8 @@
 <div flex layout="row">
 
    <!--  ###################################
-         MAIN SIDEBAR
-         ####################################!-->
+   MAIN SIDEBAR
+   ####################################!-->
 
    <div class="navbar-container" ng-controller="MainNavCtrl" layout="row">
       <md-sidenav md-is-locked-open="true" class="md-sidenav-left md-whiteframe-2dp navbar">
@@ -53,25 +53,21 @@
    </div>
 
    <!--  ###################################
-         GALLERY
-         ####################################!-->
+   GALLERY
+   ####################################!-->
 
    <md-content id="gallery-wrap" ng-controller="GalleryCtrl" flex>
-      <md-sidenav md-is-locked-open="false" class="md-sidenav-left md-whiteframe-2dp navbar-secondary" md-component-id="filternav">
-         <md-list>
-            <md-list-item flex>
-               <md-button class="navbar-button" ng-click="selectFolderToExplore()">
-                  <md-icon class="zmdi zmdi-refresh zmdi-hc-2-5x navbar-svg"></md-icon>
-                  Réinitialiser
-               </md-button>
-            </md-list-item>
-            <md-list-item class="navbar-item">
-               <md-button class="navbar-button">
-                  <md-tooltip md-direction="right" class="tooltip">Par nom</md-tooltip>
-                  <md-icon md-svg-src="assets/svg/filter-filled-tool-symbol.svg" class="navbar-svg"></md-icon>
-               </md-button>
-            </md-list-item>
-         </md-list>
+      <md-sidenav md-is-locked-open="false" class="md-sidenav-left md-whiteframe-2dp navbar-secondary" md-component-id="filternav" layout="column">
+         <md-button class="navbar-button" ng-click="selectFolderToExplore()">
+            <md-icon class="zmdi zmdi-refresh zmdi-hc-2-5x navbar-svg"></md-icon>
+            Réinitialiser
+         </md-button>
+         <div>
+            <h2>Par tag</h2>
+            <md-button ng-repeat="tag in $parent.getSetAsArr($parent.existingTags)" ng-style="filterTags.indexOf(tag) !== -1 && {'background-color':'rgb(33, 150, 243)'}" ng-click="addFilterTag(tag)">
+               {{ tag }}
+            </md-button>
+         </div>
       </md-sidenav>
       <md-sidenav md-is-locked-open="false" class="md-sidenav-left md-whiteframe-2dp navbar navbar-secondary" md-component-id="sortnav">
          <md-list>
@@ -105,10 +101,10 @@
 
             <div class="img-desc-wrap">
                <div>
-                     <div ng-show="shot.hasChanged" class="changed-dot"></div>
-                     <md-icon class="card-icon material-icons" data-ng-style="shot.hasGeo && {'color':'#ff5a5a'}">place</md-icon>
-                     <md-icon class="card-icon material-icons" data-ng-style="shot.hasStars && {'color':'#efbd40'}">star</md-icon>
-                     <md-icon class="card-icon material-icons" data-ng-style="shot.hasTags && {'color':'#2687e2'}">style</md-icon>
+                  <div ng-show="shot.hasChanged" class="changed-dot"></div>
+                  <md-icon class="card-icon material-icons" data-ng-style="shot.hasGeo && {'color':'#ff5a5a'}">place</md-icon>
+                  <md-icon class="card-icon material-icons" data-ng-style="shot.hasStars && {'color':'#efbd40'}">star</md-icon>
+                  <md-icon class="card-icon material-icons" data-ng-style="shot.hasTags && {'color':'#2687e2'}">style</md-icon>
                   <md-button class="card-button" style="background:transparent">
                      <md-tooltip md-direction="top" class="tooltip">{{ shot.path }}</md-tooltip>
                      <md-icon class="card-icon material-icons" style="color: #dedede">info</md-icon>
@@ -120,14 +116,14 @@
    </md-content>
 
    <!--  ###################################
-         DISPLAY SIDEBAR
-         ####################################!-->
+   DISPLAY SIDEBAR
+   ####################################!-->
 
    <md-sidenav class="md-sidenav-right md-whiteframe-2dp" md-is-locked-open="true">
       <div ng-controller="RightNavCtrl" style="padding-top: 15px">
          <div class="image-preview" layout="row">
-             <md-icon ng-hide="$parent.imgDetailsToShow != null" class="card-icon material-icons" style="color: #dedede; font-size: 96px; height: 96px; width: 96px">photo</md-icon>
-             <img ng-show="$parent.imgDetailsToShow != null" src="{{ $parent.imgDetailsToShow.path }}">
+            <md-icon ng-hide="$parent.imgDetailsToShow != null" class="card-icon material-icons" style="color: #dedede; font-size: 96px; height: 96px; width: 96px">photo</md-icon>
+            <img ng-show="$parent.imgDetailsToShow != null" src="{{ $parent.imgDetailsToShow.path }}">
          </div>
          <div>
             <md-toolbar layout="row" class="right-sidenav-cat">
@@ -149,26 +145,26 @@
                </div>
             </md-toolbar>
             <div class="detail-tags">
-                <md-chips ng-model="$parent.imgDetailsToShow.tags" readonly="!editTags" md-removable="editTags" placeholder="Entrer un tag...">
-                    <md-chip-template>
-                      <strong>{{$chip}}</strong>
-                    </md-chip-template>
-              </md-chips>
-              <div ng-show="editTags">
+               <md-chips ng-model="$parent.imgDetailsToShow.tags" readonly="!editTags" md-removable="editTags" placeholder="Entrer un tag...">
+                  <md-chip-template>
+                     <strong>{{$chip}}</strong>
+                  </md-chip-template>
+               </md-chips>
+               <div ng-show="editTags">
                   <md-divider style="margin-bottom: 8px;"></md-divider>
                   <span class="md-body-1" style="margin-left: 8px;">Derniers tags</span>
                   <div class="tag-buttons">
-                      <md-button ng-repeat="tag in $parent.getSetAsArr($parent.existingTags)" style="background:transparent" ng-click="addTag(tag)">
-                             {{ tag }}
-                      </md-button>
+                     <md-button ng-repeat="tag in $parent.getSetAsArr($parent.existingTags)" style="background:transparent" ng-click="addTag(tag)">
+                        {{ tag }}
+                     </md-button>
                   </div>
                   <span class="md-body-1" style="margin-left: 8px;">Tous les tags</span>
                   <div class="tag-buttons">
-                      <md-button ng-repeat="tag in $parent.getSetAsArr($parent.existingTags)" style="background:transparent" ng-click="addTag(tag)">
-                             {{ tag }}
-                      </md-button>
+                     <md-button ng-repeat="tag in $parent.getSetAsArr($parent.existingTags)" style="background:transparent" ng-click="addTag(tag)">
+                        {{ tag }}
+                     </md-button>
                   </div>
-              </div>
+               </div>
             </div>
 
             <md-toolbar layout="row" class="right-sidenav-cat">
@@ -181,9 +177,9 @@
                </div>
             </md-toolbar>
 
-         <md-button ng-click="saveDetails()" class="md-raised" style="position: absolute; bottom: 0; right: 0;">
-         Sauver</md-button>
+            <md-button ng-click="saveDetails()" class="md-raised" style="position: absolute; bottom: 0; right: 0;">
+               Sauver</md-button>
+            </div>
          </div>
-      </div>
-   </md-sidenav>
-</div>
+      </md-sidenav>
+   </div>

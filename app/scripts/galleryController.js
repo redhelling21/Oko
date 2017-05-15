@@ -3,6 +3,7 @@ controller('GalleryCtrl', ['$scope', 'angularGridInstance', '$mdToast', '$timeou
     const ipcRenderer = require('electron').ipcRenderer;
 
     var tiles = [];
+    var backupShots = [];
     $scope.shots = [];
     $scope.selectedImgs = [];
     $scope.page = 0;
@@ -12,15 +13,13 @@ controller('GalleryCtrl', ['$scope', 'angularGridInstance', '$mdToast', '$timeou
     $scope.filterTags = [];
 
     $scope.addFilterTag = function(tag){
-        console.log("tag : " + tag);
         var index = $scope.filterTags.indexOf(tag);
-        console.log("index : " + index);
         if(index === -1){
             $scope.filterTags = $scope.filterTags.concat(tag);
         }else{
             $scope.filterTags.splice(index);
         }
-        console.log("filtertag : " + $scope.filterTags);
+        filterByTags();
     };
 
     $scope.tagButtonColor = function(tag){
@@ -30,8 +29,21 @@ controller('GalleryCtrl', ['$scope', 'angularGridInstance', '$mdToast', '$timeou
         }else{
             return {"background-color": "green"};
         }
-    }
+    };
 
+    var filterByTags = function(){
+        $scope.shots = backupShots;
+        console.log($scope.shots);
+        console.log($scope.filterTags);
+        if($scope.filterTags.length){
+            $scope.shots = $scope.shots.filter(function(element) {
+               return element.tags.filter(function(tag) {
+                   return $scope.filterTags.indexOf(tag) > -1;
+               }).length === $scope.filterTags.length;
+            });
+        }
+        console.log($scope.shots);
+    };
 
     ipcRenderer.on('scan-folders-reply', function(event, arg){
         var images = arg, temp = [], i = 0, hasTags, hasStars, hasGeo, hasMetas, image;
@@ -86,7 +98,9 @@ controller('GalleryCtrl', ['$scope', 'angularGridInstance', '$mdToast', '$timeou
     };
 
     $scope.loadMore = function(){
+
         if(!$scope.fullyLoaded){
+            $scope.shots = backupShots;
             if(($scope.page + 1)*50 >= tiles.length ){
                 $scope.shots = tiles;
                 $scope.fullyLoaded = true;
@@ -95,7 +109,9 @@ controller('GalleryCtrl', ['$scope', 'angularGridInstance', '$mdToast', '$timeou
                     $scope.shots.push(tiles[i]);
                 }
             }
+            backupShots = $scope.shots;
             $scope.page++;
+            filterByTags();
             $scope.$apply();
             $scope.refresh();
         }

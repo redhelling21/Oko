@@ -64,7 +64,8 @@
          </md-button>
          <div>
             <h2>Par tag</h2>
-            <md-button ng-repeat="tag in $parent.getSetAsArr($parent.existingTags)" ng-style="filterTags.indexOf(tag) !== -1 && {'background-color':'rgb(33, 150, 243)'}" ng-click="addFilterTag(tag)">
+            <md-button ng-style="isFilteredByNoTags && {'background-color':'rgb(209, 0, 0)'}" ng-click="filterByNoTags()">Pas de tags</md-button>
+            <md-button ng-disabled="isFilteredByNoTags" ng-repeat="tag in $parent.getSetAsArr($parent.existingTags)" ng-style="filterTags.indexOf(tag) !== -1 && {'background-color':'rgb(33, 150, 243)'}" ng-click="addFilterTag(tag)">
                {{ tag }}
             </md-button>
          </div>

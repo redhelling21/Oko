@@ -7,6 +7,7 @@ controller('GalleryCtrl', ['$scope', 'angularGridInstance', '$mdToast', '$timeou
     $scope.shots = [];
     $scope.selectedImgs = [];
     $scope.page = 0;
+    $scope.isFilteredByNoTags = false;
     var fullyLoaded = false;
 
 
@@ -22,6 +23,16 @@ controller('GalleryCtrl', ['$scope', 'angularGridInstance', '$mdToast', '$timeou
         filterByTags();
     };
 
+    $scope.filterByNoTags = function(){
+        if($scope.isFilteredByNoTags){
+            $scope.isFilteredByNoTags = false;
+        }else{
+            $scope.isFilteredByNoTags = true;
+            $scope.filterTags = [];
+        }
+        filterByTags();
+    }
+
     $scope.tagButtonColor = function(tag){
         console.log("Style updated");
         if($scope.filterTags.indexOf(tag) !== -1){
@@ -33,16 +44,20 @@ controller('GalleryCtrl', ['$scope', 'angularGridInstance', '$mdToast', '$timeou
 
     var filterByTags = function(){
         $scope.shots = backupShots;
-        console.log($scope.shots);
-        console.log($scope.filterTags);
-        if($scope.filterTags.length){
+        if($scope.isFilteredByNoTags){
             $scope.shots = $scope.shots.filter(function(element) {
-               return element.tags.filter(function(tag) {
-                   return $scope.filterTags.indexOf(tag) > -1;
-               }).length === $scope.filterTags.length;
+               return element.tags.length == 0
             });
+        }else{
+            if($scope.filterTags.length){
+                $scope.shots = $scope.shots.filter(function(element) {
+                   return element.tags.filter(function(tag) {
+                       return $scope.filterTags.indexOf(tag) > -1;
+                   }).length === $scope.filterTags.length;
+                });
+            }
         }
-        console.log($scope.shots);
+
     };
 
     ipcRenderer.on('scan-folders-reply', function(event, arg){

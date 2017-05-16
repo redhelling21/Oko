@@ -80,7 +80,7 @@ function createResolverWriteStream() {
             throw new Error('resolve argument must be a function')
         }
         if (this._resolveMap[commandNumber]) {
-            throw new Error('Command with the same number is already expected')
+            throw new Error('Command with the same number is already expecd : ' + commandNumber);
         }
         this._resolveMap[commandNumber] = resolve
     }

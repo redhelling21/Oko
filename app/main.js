@@ -122,6 +122,8 @@ var walkSync = function(dir, filelist) {
         }
     };
 
+var promise_count = 0;
+
 var readMeta = function(pathList){
     var promises = [];
     console.log("readmeta");

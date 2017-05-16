@@ -18,6 +18,7 @@ controller('MainNavCtrl', function($scope, $mdDialog, $mdSidenav) {
         });
     };
     $scope.selectFolderToExplore = function(ev) {
+        $scope.$parent.isLoading = true;
         dialog.showOpenDialog(remote.getCurrentWindow(), {
             defaultPath: 'c:/',
             properties: ['openDirectory']

@@ -97,6 +97,7 @@ controller('GalleryCtrl', ['$scope', 'angularGridInstance', '$mdToast', '$timeou
         $scope.fullyLoaded = false;
         $scope.page = 0;
         $scope.loadMore();
+        $scope.$parent.isLoading = false;
     });
 
     ipcRenderer.on('write-datas-reply', function(event, arg){

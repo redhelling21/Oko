@@ -205,6 +205,24 @@ md-chips-wrap {
     width: auto;
     margin: 3px;
 }
+
+#loadingModal {
+		z-index: 2500;
+    background-color: rgba(0, 0, 0, 0.52);
+    position: absolute;
+    top: 36px;
+    right: 0px;
+    height: calc(100% - 36px);
+    width: 100%;
+}
+
+#loadingModal md-progress-circular {
+		position: absolute;
+		top: calc(50% - 50px);
+		right: calc(50% - 50px);
+		z-index: 3000;
+}
+
 /* Scrollbar style */
 
 ::-webkit-scrollbar {

@@ -11,6 +11,18 @@
         "type": "version"
       },
       "C:\\Users\\Hellong\\Desktop\\Oko"
+    ],
+    [
+      {
+        "raw": "node-exiftool@file:./node-exiftool",
+        "scope": null,
+        "escapedName": "node-exiftool",
+        "name": "node-exiftool",
+        "rawSpec": "file:./node-exiftool",
+        "spec": "C:\\Users\\thburi\\Documents\\Perso\\Oko\\node-exiftool",
+        "type": "directory"
+      },
+      "C:\\Users\\thburi\\Documents\\Perso\\Oko"
     ]
   ],
   "_from": "node-exiftool@2.1.2",
@@ -29,23 +41,22 @@
   "_npmVersion": "4.2.0",
   "_phantomChildren": {},
   "_requested": {
-    "raw": "node-exiftool@2.1.2",
+    "raw": "node-exiftool@file:./node-exiftool",
     "scope": null,
     "escapedName": "node-exiftool",
     "name": "node-exiftool",
-    "rawSpec": "2.1.2",
-    "spec": "2.1.2",
-    "type": "version"
+    "rawSpec": "file:./node-exiftool",
+    "spec": "C:\\Users\\thburi\\Documents\\Perso\\Oko\\node-exiftool",
+    "type": "directory"
   },
   "_requiredBy": [
-    "#USER",
     "/"
   ],
   "_resolved": "https://registry.npmjs.org/node-exiftool/-/node-exiftool-2.1.2.tgz",
   "_shasum": "6c9459a4edc9351cd1db0410f9b75edaccc17f1d",
   "_shrinkwrap": null,
-  "_spec": "node-exiftool@2.1.2",
-  "_where": "C:\\Users\\Hellong\\Desktop\\Oko",
+  "_spec": "node-exiftool@file:./node-exiftool",
+  "_where": "C:\\Users\\thburi\\Documents\\Perso\\Oko",
   "author": {
     "name": "Anton @ Sobesednik.Media"
   },

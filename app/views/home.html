@@ -10,6 +10,9 @@
    </md-button>
 </md-toolbar>
 <div flex layout="row">
+  <div ng-show="isLoading" id="loadingModal">
+    <md-progress-circular md-diameter="100px"></md-progress-circular>
+  </div>
 
    <!--  ###################################
    MAIN SIDEBAR

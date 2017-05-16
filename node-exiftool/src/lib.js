@@ -67,8 +67,17 @@ function execute(proc, command, commandNumber, args, noSplitArgs, encoding) {
         .forEach(arg => writeStdIn(proc, arg, encoding))
 }
 
+var previous = 0;
+
 function genCommandNumber() {
-    return String(Math.floor(Math.random() * 100000000000))
+    var date = Date.now();
+    // If created at same millisecond as previous
+    if (date <= previous) {
+        date = ++previous;
+    } else {
+        previous = date;
+    }
+    return String(date);
 }
 
 function executeCommand(proc, stdoutRws, stderrRws, command, args, noSplitArgs, encoding) {

@@ -232,6 +232,21 @@ md-chips-wrap {
   transition:all linear 1s;
 }
 
+.tag-filter-button {
+	/* background-color: #636363; */
+border-style: 1px solid;
+font-size: 12px;
+height: 24px;
+/* max-height: 20px; */
+min-height: 10px;
+line-height: 20px;
+min-width: 0px;
+padding: 0px 5px 0px 5px;
+margin: 7px 5px 3px 2px;
+/* border: 2px solid rgb(148, 148, 148); */
+/* border-radius: 7px; */
+}
+
 /* Scrollbar style */
 
 ::-webkit-scrollbar {

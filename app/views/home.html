@@ -60,19 +60,25 @@
    ####################################!-->
 
    <md-content id="gallery-wrap" ng-controller="GalleryCtrl" flex>
-      <md-sidenav md-is-locked-open="false" class="md-sidenav-left md-whiteframe-2dp navbar-secondary" md-component-id="filternav" layout="column">
-         <md-button class="navbar-button" ng-click="selectFolderToExplore()">
+       <!--  ###################################
+       FILTER NAV
+       ####################################!-->
+      <md-sidenav md-is-locked-open="false" class="md-sidenav-left md-whiteframe-2dp navbar-secondary" md-component-id="filternav" layout="column" layout-padding>
+         <md-button class="navbar-button">
             <md-icon class="zmdi zmdi-refresh zmdi-hc-2-5x navbar-svg"></md-icon>
             Réinitialiser
          </md-button>
          <div>
-            <h2>Par tag</h2>
-            <md-button ng-style="isFilteredByNoTags && {'background-color':'rgb(209, 0, 0)'}" ng-click="filterByNoTags()">Pas de tags</md-button>
-            <md-button ng-disabled="isFilteredByNoTags" ng-repeat="tag in $parent.getSetAsArr($parent.existingTags)" ng-style="filterTags.indexOf(tag) !== -1 && {'background-color':'rgb(33, 150, 243)'}" ng-click="addFilterTag(tag)">
+            <h2 flex>Par tag</h2>
+            <md-button class="tag-filter-button" ng-style="isFilteredByNoTags && {'background-color':'rgb(209, 0, 0)'}" ng-click="filterByNoTags()">Pas de tags</md-button>
+            <md-button class="tag-filter-button" ng-disabled="isFilteredByNoTags" ng-repeat="tag in $parent.getSetAsArr($parent.existingTags)" ng-style="filterTags.indexOf(tag) !== -1 && {'background-color':'rgb(33, 150, 243)'}" ng-click="addFilterTag(tag)">
                {{ tag }}
             </md-button>
          </div>
       </md-sidenav>
+      <!--  ###################################
+      SORT NAV
+      ####################################!-->
       <md-sidenav md-is-locked-open="false" class="md-sidenav-left md-whiteframe-2dp navbar navbar-secondary" md-component-id="sortnav">
          <md-list>
             <md-list-item class="navbar-item">

@@ -95,7 +95,7 @@
             </md-list-item>
          </md-list>
       </md-sidenav>
-      <ul id="ul-gallery" class="dynamic-grid" angular-grid="shots" ag-grid-width="300" ag-gutter-size="10" ag-id="gallery" ag-scroll-container="#gallery-wrap" ag-infinite-scroll="loadMore()">
+      <ul id="ul-gallery" class="dynamic-grid" angular-grid="shots" ag-grid-width="300" ag-gutter-size="10" ag-id="gallery" angular-grid-id="gallery" ag-scroll-container="#gallery-wrap" ag-infinite-scroll="loadMore()">
          <li data-src="{{ shot.path }}"  data-ng-repeat="shot in shots" class="grid" ng-style="{ 'box-shadow': shot.isActive ? '0px 0px 4px 2px white' : '', transition: shot.isActive ? 'none' : '' }">
             <img ng-src="{{ shot.path }}" class="grid-img" ng-click="activeImg(shot)" ng-dblclick="displayImg(shot)"/>
             <md-checkbox class="img-checkbox" ng-show="$parent.multiSelect" ng-model="shot.isActive"></md-checkbox>

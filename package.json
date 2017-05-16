@@ -25,10 +25,10 @@
   ],
   "dependencies": {
     "angulargrid": "file:./angulargrid",
+    "node-exiftool": "file:./node-exiftool",
     "bower": "^1.8.0",
     "dist-exiftool": "^10.33.1",
-    "electron-debug": "^1.1.0",
-    "node-exiftool": "^2.1.1"
+    "electron-debug": "^1.1.0"
   },
   "devDependencies": {
     "devtron": "^1.4.0",

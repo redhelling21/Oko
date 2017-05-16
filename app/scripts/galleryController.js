@@ -46,7 +46,7 @@ controller('GalleryCtrl', ['$scope', 'angularGridInstance', '$mdToast', '$timeou
         $scope.shots = backupShots;
         if($scope.isFilteredByNoTags){
             $scope.shots = $scope.shots.filter(function(element) {
-               return element.tags.length == 0
+               return element.tags.length == 0;
             });
         }else{
             if($scope.filterTags.length){
@@ -109,11 +109,11 @@ controller('GalleryCtrl', ['$scope', 'angularGridInstance', '$mdToast', '$timeou
     });
 
     $scope.refresh = function() {
-        angularGridInstance.gallery.refresh();
+        //document.getElementById('ul-gallery').refresh();
+        //angularGridInstance.gallery.refresh();
     };
 
     $scope.loadMore = function(){
-
         if(!$scope.fullyLoaded){
             $scope.shots = backupShots;
             if(($scope.page + 1)*50 >= tiles.length ){

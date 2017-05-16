@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<md-sidenav md-is-locked-open="true" class="md-sidenav-left md-whiteframe-2dp navbar">
+   <md-list>
+      <md-list-item class="navbar-item">
+         <md-button class="navbar-button" ng-click="selectFolderToExplore()">
+            <md-tooltip md-direction="right" class="tooltip">Ouvrir...</md-tooltip>
+            <md-icon md-svg-src="assets/svg/open-folder.svg" class="navbar-svg"></md-icon>
+         </md-button>
+      </md-list-item>
+      <md-list-item class="navbar-item">
+         <md-button class="navbar-button" ng-click="toggleFilterNav()">
+            <md-tooltip md-direction="right" class="tooltip">Filtrer...</md-tooltip>
+            <md-icon md-svg-src="assets/svg/filter-filled-tool-symbol.svg" class="navbar-svg"></md-icon>
+         </md-button>
+      </md-list-item>
+      <md-list-item class="navbar-item">
+         <md-button class="navbar-button" ng-click="toggleSortNav()">
+            <md-tooltip md-direction="right" class="tooltip">Trier...</md-tooltip>
+            <md-icon class="zmdi zmdi-swap-vertical zmdi-hc-2-5x navbar-svg"></md-icon>
+         </md-button>
+      </md-list-item>
+      <md-list-item class="navbar-item">
+         <md-button class="navbar-button">
+            <md-tooltip md-direction="right" class="tooltip">Multi-sélection</md-tooltip>
+            <md-icon md-svg-src="assets/svg/check.svg" class="navbar-svg" ng-click="toggleMultiSelect()"></md-icon>
+         </md-button>
+      </md-list-item>
+      <md-list-item class="navbar-item">
+         <md-button class="navbar-button" ng-click="showSettings()">
+            <md-tooltip md-direction="right" class="tooltip">Paramètres</md-tooltip>
+            <md-icon md-svg-src="assets/svg/parameters.svg" class="navbar-svg"></md-icon>
+         </md-button>
+      </md-list-item>
+   </md-list>
+</md-sidenav>

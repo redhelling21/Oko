@@ -11,17 +11,17 @@ controller('HomeCtrl', function($scope, $mdToast){
     $scope.isLoading = false;
     $scope.closeW = function(){
         window.close();
-    }
+    };
     $scope.maxW = function(){
         if (!window.isMaximized()) {
             window.maximize();
         } else {
             window.unmaximize();
         }
-    }
+    };
     $scope.reduceW = function(){
         window.minimize();
-    }
+    };
 
     $scope.getSetAsArr = function (set) {
         var arr = [];

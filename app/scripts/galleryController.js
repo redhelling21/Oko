@@ -31,7 +31,7 @@ controller('GalleryCtrl', ['$scope', 'angularGridInstance', '$mdToast', '$timeou
             $scope.filterTags = [];
         }
         filterByTags();
-    }
+    };
 
     $scope.tagButtonColor = function(tag){
         console.log("Style updated");

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<div ng-controller="RightNavCtrl" style="padding-top: 15px">
+   <div class="image-preview" layout="row">
+      <md-icon ng-hide="$parent.imgDetailsToShow != null" class="card-icon material-icons" style="color: #dedede; font-size: 96px; height: 96px; width: 96px">photo</md-icon>
+      <img ng-show="$parent.imgDetailsToShow != null" src="{{ $parent.imgDetailsToShow.path }}">
+   </div>
+   <div>
+      <md-toolbar layout="row" class="right-sidenav-cat">
+         <div class="md-toolbar-tools">
+            <h3>Note</h3>
+            <span flex></span>
+            <md-button class="md-icon-button" style="background:transparent">
+               <md-icon class="material-icons">mode_edit</md-icon>
+            </md-button>
+         </div>
+      </md-toolbar>
+      <md-toolbar class="right-sidenav-cat">
+         <div class="md-toolbar-tools">
+            <h3>Tags</h3>
+            <span flex></span>
+            <md-button class="md-icon-button" style="background:transparent" ng-click="toggleEdit()">
+               <md-icon class="material-icons">mode_edit</md-icon>
+            </md-button>
+         </div>
+      </md-toolbar>
+      <div class="detail-tags">
+         <md-chips ng-model="$parent.imgDetailsToShow.tags" readonly="!editTags" md-removable="editTags" placeholder="Entrer un tag...">
+            <md-chip-template>
+               <strong>{{$chip}}</strong>
+            </md-chip-template>
+         </md-chips>
+         <div ng-show="editTags">
+            <md-divider style="margin-bottom: 8px;"></md-divider>
+            <span class="md-body-1" style="margin-left: 8px;">Derniers tags</span>
+            <div class="tag-buttons">
+               <md-button ng-repeat="tag in $parent.getSetAsArr($parent.existingTags)" style="background:transparent" ng-click="addTag(tag)">
+                  {{ tag }}
+               </md-button>
+            </div>
+            <span class="md-body-1" style="margin-left: 8px;">Tous les tags</span>
+            <div class="tag-buttons">
+               <md-button ng-repeat="tag in $parent.getSetAsArr($parent.existingTags)" style="background:transparent" ng-click="addTag(tag)">
+                  {{ tag }}
+               </md-button>
+            </div>
+         </div>
+      </div>
+
+      <md-toolbar layout="row" class="right-sidenav-cat">
+         <div class="md-toolbar-tools">
+            <h3>Position</h3>
+            <span flex></span>
+            <md-button class="md-icon-button" style="background:transparent">
+               <md-icon class="material-icons">mode_edit</md-icon>
+            </md-button>
+         </div>
+      </md-toolbar>
+
+      <md-button ng-click="saveDetails()" class="md-raised" style="position: absolute; bottom: 0; right: 0;">
+         Sauver</md-button>
+      </div>
+   </div>

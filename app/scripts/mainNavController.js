@@ -26,12 +26,12 @@ controller('MainNavCtrl', function($scope, $mdDialog, $mdSidenav) {
             if (fileNames === undefined) return;
             var fileName = fileNames[0];
             ipcRenderer.send('scan-folders', fileName);
-        })
+        });
     };
 
     $scope.toggleMultiSelect = function(){
         $scope.$parent.multiSelect = !$scope.$parent.multiSelect;
-    }
+    };
 
     $scope.toggleFilterNav = function(){
         if($mdSidenav('filternav').isOpen()){
@@ -40,7 +40,7 @@ controller('MainNavCtrl', function($scope, $mdDialog, $mdSidenav) {
             $mdSidenav('sortnav').close();
             $mdSidenav('filternav').toggle();
         }
-    }
+    };
 
     $scope.toggleSortNav = function(){
         if($mdSidenav('sortnav').isOpen()){
@@ -49,5 +49,5 @@ controller('MainNavCtrl', function($scope, $mdDialog, $mdSidenav) {
             $mdSidenav('filternav').close();
             $mdSidenav('sortnav').toggle();
         }
-    }
+    };
 });

@@ -48,6 +48,10 @@ controller('GalleryCtrl', ['$scope', 'angularGridInstance', '$mdToast', '$timeou
             $scope.shots = $scope.shots.filter(function(element) {
                return element.tags.length == 0;
             });
+            if($scope.shots.length < 50 && !$scope.fullyLoaded){
+                console.log("loadmoar");
+                $scope.loadMore();
+            }
         }else{
             if($scope.filterTags.length){
                 $scope.shots = $scope.shots.filter(function(element) {
@@ -55,6 +59,10 @@ controller('GalleryCtrl', ['$scope', 'angularGridInstance', '$mdToast', '$timeou
                        return $scope.filterTags.indexOf(tag) > -1;
                    }).length === $scope.filterTags.length;
                 });
+                if($scope.shots.length < 50 && !$scope.fullyLoaded){
+                    console.log("loadmoar");
+                    $scope.loadMore();
+                }
             }
         }
 
@@ -163,5 +171,30 @@ controller('GalleryCtrl', ['$scope', 'angularGridInstance', '$mdToast', '$timeou
         });
         //console.log($window.lgData[el.attributes['lg-uid'].value]);
     };
+
+    $scope.deleteImg = function(shot){
+        ipcRenderer.send('delete-img', shot);
+    }
+
+    ipcRenderer.on('delete-img-reply', function(event, arg){
+        console.log(arg);
+
+        var indexS, indexT;
+        $scope.shots.forEach(function(shot){
+            if(shot.id == arg.id){
+                indexS = $scope.shots.indexOf(shot);
+            }
+        })
+        tiles.forEach(function(shot){
+            if(shot.id == arg.id){
+                indexT = tiles.indexOf(shot);
+            }
+        })
+        console.log(indexS);
+        console.log(indexT);
+        $scope.shots.splice(indexS, 1);
+        tiles.splice(indexT, 1);
+        $scope.$apply();
+    });
 }
 ]);

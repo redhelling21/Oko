@@ -92,6 +92,10 @@ var writeDataList = async function(shots, event){
 
 ipcMain.on('save-datas', (event, arg) => {
     writeDataList(arg, event);
+});
+
+ipcMain.on('delete-img', (event, arg) => {
+    deleteImg(arg, event);
 })
 
 var walkSync = function(dir, filelist) {
@@ -122,7 +126,11 @@ var walkSync = function(dir, filelist) {
         }
     };
 
-var promise_count = 0;
+var deleteImg = async function(shot, event){
+    var fs = fs || require('fs');
+    fs.unlinkSync(shot.path);
+    event.sender.send('delete-img-reply', shot)
+}
 
 var readMeta = function(pathList){
     var promises = [];

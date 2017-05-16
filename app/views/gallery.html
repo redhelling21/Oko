@@ -54,6 +54,9 @@ SORT NAV
            <md-icon class="card-icon material-icons" data-ng-style="shot.hasGeo && {'color':'#ff5a5a'}">place</md-icon>
            <md-icon class="card-icon material-icons" data-ng-style="shot.hasStars && {'color':'#efbd40'}">star</md-icon>
            <md-icon class="card-icon material-icons" data-ng-style="shot.hasTags && {'color':'#2687e2'}">style</md-icon>
+           <md-button class="card-button" style="background:transparent" ng-click="deleteImg(shot)">
+              <md-icon class="card-icon material-icons">delete</md-icon>
+           </md-button>
            <md-button class="card-button" style="background:transparent">
               <md-tooltip md-direction="top" class="tooltip">{{ shot.path }}</md-tooltip>
               <md-icon class="card-icon material-icons" style="color: #dedede">info</md-icon>

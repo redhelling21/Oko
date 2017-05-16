@@ -223,6 +223,15 @@ md-chips-wrap {
 		z-index: 3000;
 }
 
+.animate-show,
+.animate-hide {
+  -webkit-transition:all linear 1s;
+  -moz-transition:all linear 1s;
+  -ms-transition:all linear 1s;
+  -o-transition:all linear 1s;
+  transition:all linear 1s;
+}
+
 /* Scrollbar style */
 
 ::-webkit-scrollbar {
